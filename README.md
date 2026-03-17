@@ -39,23 +39,23 @@ Activates a high-accountability execution mode. The AI stops being polite and st
 Clone this repo and symlink each skill into your Claude Code skills directory:
 
 ```bash
-git clone https://github.com/cablate/claude-code-skills.git
+git clone https://github.com/cablate/cablate-skills.git
 
 # Linux / macOS
-ln -s "$(pwd)/claude-code-skills/skills/handoff" ~/.claude/skills/handoff
-ln -s "$(pwd)/claude-code-skills/skills/thorough" ~/.claude/skills/thorough
+ln -s "$(pwd)/cablate-skills/skills/handoff" ~/.claude/skills/handoff
+ln -s "$(pwd)/cablate-skills/skills/thorough" ~/.claude/skills/thorough
 
 # Windows (PowerShell as Admin)
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\handoff" -Target ".\claude-code-skills\skills\handoff"
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\thorough" -Target ".\claude-code-skills\skills\thorough"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\handoff" -Target ".\cablate-skills\skills\handoff"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\thorough" -Target ".\cablate-skills\skills\thorough"
 ```
 
 ### Option 2: Direct copy
 
 ```bash
-git clone https://github.com/cablate/claude-code-skills.git
-cp -r claude-code-skills/skills/handoff ~/.claude/skills/
-cp -r claude-code-skills/skills/thorough ~/.claude/skills/
+git clone https://github.com/cablate/cablate-skills.git
+cp -r cablate-skills/skills/handoff ~/.claude/skills/
+cp -r cablate-skills/skills/thorough ~/.claude/skills/
 ```
 
 ## Usage

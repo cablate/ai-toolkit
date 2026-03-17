@@ -39,23 +39,23 @@
 Clone 這個 repo，然後 symlink 到 Claude Code 的 skills 目錄：
 
 ```bash
-git clone https://github.com/cablate/claude-code-skills.git
+git clone https://github.com/cablate/cablate-skills.git
 
 # Linux / macOS
-ln -s "$(pwd)/claude-code-skills/skills/handoff" ~/.claude/skills/handoff
-ln -s "$(pwd)/claude-code-skills/skills/thorough" ~/.claude/skills/thorough
+ln -s "$(pwd)/cablate-skills/skills/handoff" ~/.claude/skills/handoff
+ln -s "$(pwd)/cablate-skills/skills/thorough" ~/.claude/skills/thorough
 
 # Windows (以管理員身份開啟 PowerShell)
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\handoff" -Target ".\claude-code-skills\skills\handoff"
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\thorough" -Target ".\claude-code-skills\skills\thorough"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\handoff" -Target ".\cablate-skills\skills\handoff"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\thorough" -Target ".\cablate-skills\skills\thorough"
 ```
 
 ### 方式二：直接複製
 
 ```bash
-git clone https://github.com/cablate/claude-code-skills.git
-cp -r claude-code-skills/skills/handoff ~/.claude/skills/
-cp -r claude-code-skills/skills/thorough ~/.claude/skills/
+git clone https://github.com/cablate/cablate-skills.git
+cp -r cablate-skills/skills/handoff ~/.claude/skills/
+cp -r cablate-skills/skills/thorough ~/.claude/skills/
 ```
 
 ## 使用方式
