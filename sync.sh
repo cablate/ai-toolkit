@@ -13,19 +13,11 @@ SKILLS=(
   thorough
   agentskill-expertise
   collaboration-style
-  backend-patterns
-  frontend-patterns
-  frontend-design
-  coding-standards
-  tdd-workflow
-  agentic-mcp
 )
 
 # Skills from ClaudeCab agents (manually maintained, not auto-synced)
 # These are abstracted versions — don't overwrite with rsync:
 #   self-growth (from agents/_example, abstracted)
-#   method-code-review (from agents/coder)
-#   brainstorming (from agents/admin)
 
 echo "Syncing from $CLAUDE_DIR → $SCRIPT_DIR"
 

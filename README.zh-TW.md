@@ -17,12 +17,6 @@
 | [`/agentskill-expertise`](skills/agentskill-expertise/SKILL.md) | Agent Skill 設計知識庫——底層機制、設計哲學、架構模式、常見誤區 |
 | [`/collaboration-style`](skills/collaboration-style/skill.md) | AI-人類協作規範——摩擦案例、程式風格偏好、行為準則 |
 | [`/self-growth`](skills/self-growth/SKILL.md) | 持續學習框架——從工作中學習、組織知識、建立回饋迴路 |
-| [`/backend-patterns`](skills/backend-patterns/SKILL.md) | 後端開發模式與慣例 |
-| [`/frontend-patterns`](skills/frontend-patterns/SKILL.md) | 前端開發模式與慣例 |
-| [`/frontend-design`](skills/frontend-design/SKILL.md) | 前端設計原則與 UI 指南 |
-| [`/coding-standards`](skills/coding-standards/SKILL.md) | 程式碼品質標準與風格規範 |
-| [`/tdd-workflow`](skills/tdd-workflow/SKILL.md) | 測試驅動開發工作流 |
-| [`/agentic-mcp`](skills/agentic-mcp/SKILL.md) | MCP Server 設定與模式 |
 
 ## Statusline
 
