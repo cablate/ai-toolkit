@@ -1,6 +1,10 @@
-# AI Toolkit
+<p align="center">
+  <img src="assets/banner.svg" alt="AI Toolkit" width="100%">
+</p>
 
-[繁體中文](README.zh-TW.md)
+<p align="center">
+  <a href="README.zh-TW.md">繁體中文</a>
+</p>
 
 Battle-tested [Claude Code](https://docs.anthropic.com/en/docs/claude-code) configurations, skills, and tools from daily production use. Not theory — everything here is extracted from real workflows with AI agents.
 

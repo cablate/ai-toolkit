@@ -1,6 +1,10 @@
-# AI Toolkit
+<p align="center">
+  <img src="assets/banner.svg" alt="AI Toolkit" width="100%">
+</p>
 
-[English](README.md)
+<p align="center">
+  <a href="README.md">English</a>
+</p>
 
 實戰驗證過的 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 設定、Skills 和工具。不是理論——全部從每天跟 AI agent 協作的真實工作流中提煉。
 
