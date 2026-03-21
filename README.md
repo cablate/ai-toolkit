@@ -1,4 +1,4 @@
-# Cab's Claude Code Setup
+# AI Toolkit
 
 [繁體中文](README.zh-TW.md)
 
@@ -29,8 +29,8 @@ Cost and context awareness for Claude Code. Token usage (K precision), context b
 ### Symlink (recommended)
 
 ```bash
-git clone https://github.com/cablate/cablate-skills.git
-cd cablate-skills
+git clone https://github.com/cablate/ai-toolkit.git
+cd ai-toolkit
 
 # Symlink all skills at once — Linux / macOS
 for skill in skills/*/; do
@@ -52,9 +52,9 @@ cp statusline/statusline.ps1 ~/.claude/
 ### Direct copy
 
 ```bash
-git clone https://github.com/cablate/cablate-skills.git
-cp -r cablate-skills/skills/* ~/.claude/skills/
-cp cablate-skills/statusline/statusline.ps1 ~/.claude/
+git clone https://github.com/cablate/ai-toolkit.git
+cp -r ai-toolkit/skills/* ~/.claude/skills/
+cp ai-toolkit/statusline/statusline.ps1 ~/.claude/
 ```
 
 ### Staying in sync
