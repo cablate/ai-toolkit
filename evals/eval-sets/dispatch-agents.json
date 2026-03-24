@@ -1,0 +1,38 @@
+[
+  {"query": "Find all usages of handleAuth across the codebase", "expected_agent": "investigator"},
+  {"query": "How does the payment processing pipeline work?", "expected_agent": "investigator"},
+  {"query": "Why is the login endpoint returning 500 errors?", "expected_agent": "investigator"},
+  {"query": "Search for all files that import the database module", "expected_agent": "investigator"},
+  {"query": "Trace the request lifecycle from API gateway to database", "expected_agent": "investigator"},
+  {"query": "Where is the rate limiting configuration defined?", "expected_agent": "investigator"},
+  {"query": "Find which components use the useAuth hook", "expected_agent": "investigator"},
+  {"query": "Debug why the WebSocket connection keeps dropping", "expected_agent": "investigator"},
+
+  {"query": "Implement a rate limiting middleware for the API", "expected_agent": "builder"},
+  {"query": "Add a new endpoint for user profile updates", "expected_agent": "builder"},
+  {"query": "Write unit tests for the payment service", "expected_agent": "builder"},
+  {"query": "Fix the failing test in auth.test.ts", "expected_agent": "builder"},
+  {"query": "Modify the user model to include an avatar field", "expected_agent": "builder"},
+  {"query": "Create a new React component for the settings page", "expected_agent": "builder"},
+  {"query": "Implement the caching layer we planned", "expected_agent": "builder"},
+  {"query": "Add input validation to the registration form", "expected_agent": "builder"},
+
+  {"query": "Review the authentication module for security issues", "expected_agent": "reviewer"},
+  {"query": "Check this PR for potential bugs and code quality issues", "expected_agent": "reviewer"},
+  {"query": "Find dead code and unused exports in the utils directory", "expected_agent": "reviewer"},
+  {"query": "Clean up unused imports across the project", "expected_agent": "reviewer"},
+  {"query": "Review the recent changes to the database layer", "expected_agent": "reviewer"},
+  {"query": "Are there any security vulnerabilities in our API handlers?", "expected_agent": "reviewer"},
+
+  {"query": "Design the architecture for a real-time notification system", "expected_agent": "analyst"},
+  {"query": "Plan the implementation for migrating from REST to GraphQL", "expected_agent": "analyst"},
+  {"query": "Evaluate whether we should use Redis or Memcached for caching", "expected_agent": "analyst"},
+  {"query": "Audit the codebase health and identify technical debt", "expected_agent": "analyst"},
+  {"query": "How should we structure the microservices for the new feature?", "expected_agent": "analyst"},
+  {"query": "Create an implementation plan for the auth refactor", "expected_agent": "analyst"},
+
+  {"query": "Update the README to reflect the new API endpoints", "expected_agent": "doc-sync"},
+  {"query": "Set up project documentation for the new service", "expected_agent": "doc-sync"},
+  {"query": "The code changed but the docs are out of date, sync them", "expected_agent": "doc-sync"},
+  {"query": "Initialize the project docs structure with ADRs", "expected_agent": "doc-sync"}
+]

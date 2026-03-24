@@ -21,6 +21,9 @@ ai-toolkit/
 │   │   └── doc-sync.md     # 文件初始化 / 文件同步
 │   └── interactive/
 │       └── agent-factory.md  # 設計並產生新 agent
+├── evals/                   # Agent dispatch 評估系統
+│   ├── scripts/             # 評估執行器、優化器、報表產生器
+│   └── eval-sets/           # 預設評估集
 ├── skills/
 │   ├── handoff/           # Session 交接
 │   ├── thorough/          # 極致交付模式
