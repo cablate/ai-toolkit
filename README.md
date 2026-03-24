@@ -12,23 +12,21 @@ A batteries-included working environment for [Claude Code](https://docs.anthropi
 
 ```
 ai-toolkit/
-├── agents/
-│   ├── dispatch/          # SOP agents for subagent quality
-│   │   ├── analyst.md      # Architecture / Planning / Audit
-│   │   ├── investigator.md # Search / Explore / Debug / External research
-│   │   ├── builder.md      # Code implementation / Testing
-│   │   ├── reviewer.md     # Code review / Dead code cleanup
-│   │   └── doc-sync.md     # Doc init / Doc sync
-│   └── interactive/
-│       └── agent-factory.md  # Design and generate new agents
-├── skills/
-│   ├── handoff/           # Session handoff
-│   ├── thorough/          # Relentless delivery mode
-│   ├── project-docs/      # Project documentation structure
-│   ├── agentskill-expertise/
-│   ├── collaboration-style/
-│   └── self-growth/
-└── statusline/            # Cost & context monitoring
+├── agents/                  # SOP agents (symlink to ~/.claude/agents/)
+│   ├── analyst.md           # Architecture / Planning / Audit
+│   ├── investigator.md      # Search / Explore / Debug / External research
+│   ├── builder.md           # Code implementation / Testing
+│   ├── reviewer.md          # Code review / Dead code cleanup
+│   ├── doc-sync.md          # Doc init / Doc sync
+│   └── agent-factory.md     # Design and generate new agents
+├── skills/                  # Skills (symlink to ~/.claude/skills/)
+│   ├── handoff/             # Session handoff
+│   ├── thorough/            # Relentless delivery mode
+│   ├── project-docs/        # Project documentation structure
+│   ├── agentskill-expertise/ # Skill design knowledge base
+│   ├── collaboration-style/ # AI-human collaboration framework
+│   └── self-growth/         # Continuous learning framework
+└── statusline/              # Cost & context monitoring
 ```
 
 ## Dispatch Agents
@@ -37,11 +35,11 @@ When `/thorough` dispatches parallel subagents, prompt quality determines output
 
 | Agent | Model | Modes | When dispatched |
 |-------|-------|-------|-----------------|
-| [`analyst`](agents/dispatch/analyst.md) | opus | Architecture / Planning / Audit | "design this", "plan the implementation", "audit codebase health" |
-| [`investigator`](agents/dispatch/investigator.md) | sonnet | Search / Explore / Debug / External | "find all usages of X", "how does this work", "why does this fail" |
-| [`builder`](agents/dispatch/builder.md) | sonnet | Create / Modify / Test | "implement this", "modify the handler", "write tests for X" |
-| [`reviewer`](agents/dispatch/reviewer.md) | sonnet | Review / Cleanup | "review this code", "find dead code", "clean up unused exports" |
-| [`doc-sync`](agents/dispatch/doc-sync.md) | sonnet | Init / Sync | "set up project docs", "sync docs after changes" |
+| [`analyst`](agents/analyst.md) | opus | Architecture / Planning / Audit | "design this", "plan the implementation", "audit codebase health" |
+| [`investigator`](agents/investigator.md) | sonnet | Search / Explore / Debug / External | "find all usages of X", "how does this work", "why does this fail" |
+| [`builder`](agents/builder.md) | sonnet | Create / Modify / Test | "implement this", "modify the handler", "write tests for X" |
+| [`reviewer`](agents/reviewer.md) | sonnet | Review / Cleanup | "review this code", "find dead code", "clean up unused exports" |
+| [`doc-sync`](agents/doc-sync.md) | sonnet | Init / Sync | "set up project docs", "sync docs after changes" |
 
 Each agent auto-detects its mode from dispatch context. One agent, multiple workflows.
 
@@ -57,7 +55,7 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 
 | Agent | Description |
 |-------|-------------|
-| [`agent-factory`](agents/interactive/agent-factory.md) | Design and generate new agents — research best practices, analyze requirements, output production-ready agent prompts |
+| [`agent-factory`](agents/agent-factory.md) | Design and generate new agents — research best practices, analyze requirements, output production-ready agent prompts |
 
 ## Skills
 

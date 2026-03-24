@@ -1,55 +1,59 @@
-# 摩擦案例庫
+# Friction Case Catalog
 
-> 從實際 session 提煉的反模式。已抽象化，不綁定特定專案。
-
-## 效率
-
-| # | 反模式 | 根因 |
-|---|--------|------|
-| E1 | 收到任務先探索 codebase 而非直接執行 | 準備過度 |
-| E2 | 序列執行可平行的獨立任務 | 未善用併發 |
-| E3 | 一次產出過長內容未分段確認 | 未管理產出節奏 |
-| E4 | 核心任務未完成就收工 | 前期繞路耗盡時間 |
-
-## 精準
-
-| # | 反模式 | 根因 |
-|---|--------|------|
-| P1 | 被要求改 A/B/C，順便改了 D/E/F | 自行擴大範圍 |
-| P2 | Debug 改錯檔案、用錯 logger | 未確認錯誤來源 |
-| P3 | 描述內容時編造不存在的細節 | 未查原始資料 |
-| P4 | 跨 session 開發未記錄設計決策 | 缺乏 ADR 意識 |
-| P5 | `git add -A` 包含 credentials/tokens | 未精確選擇檔案 |
-| P6 | 面向國際的文件用了錯誤語言 | 未考慮目標受眾 |
-| P7 | 設計方案過度繞路，被使用者指正常識做法 | 過度設計 |
-| P8 | 操作前未確認外部狀態（推 code 到已 merge 的 branch 等） | 動作前未查現況 |
-
-## 根因思維
-
-| # | 反模式 | 根因 |
-|---|--------|------|
-| R1 | 在症狀層反覆迭代（調 filter、改 threshold）而不驗證上游函數是否真的被呼叫、參數是否正確 | 治標不治本 |
-| R2 | 修復方案基於「讀 code 推測行為」而非「grep log 確認實際行為」 | 推理取代數據 |
-| R3 | Code review / subagent 提出建議，沒用 runtime 數據驗證假設就採納執行 | 信推理不信數據 |
-| R4 | 修了 N 輪同一個問題，每輪都是微調而非質疑方向 | 沉沒成本思維 |
-| R5 | 部署後未驗證新版生效（build 通過 ≠ runtime 跑到新版） | 部署未驗證 |
-
-## 全局視野
-
-| # | 反模式 | 根因 |
-|---|--------|------|
-| H1 | 改了一處格式/邏輯，其他相同位置沒同步 | 只改局部 |
-| H2 | 被問 UX 只分析 API 技術面 | 視角錯位 |
-| H3 | 看到死代碼/重複邏輯未主動處理 | 缺乏品質主動性 |
-| H4 | 改了程式碼沒同步文件/README/test | 缺乏變更 checklist |
-| H5 | commit 大檔案沒先壓縮 | 缺乏資產品質意識 |
-| H6 | 使用者說「看 log」以為是看 code diff | 未理解使用者實際需求 |
+> Anti-patterns collected from real sessions. Kept abstract — no project-specific names or file paths.
+>
+> **How to use this file**: Add new entries as friction surfaces during sessions. Must be abstracted to the pattern level. When the same root cause appears 3+ times, strengthen the corresponding operating principle in SKILL.md.
 
 ---
 
-## 更新規則
+## Efficiency
 
-- 新類型摩擦 → 追加對應分類
-- **必須抽象化**：去除專案名稱/檔案名稱，只保留模式
-- 同根因重複 3+ 次 → 強化對應原則
-- 已內化 → 標記 `[已內化]` 精簡閱讀
+| # | Anti-pattern | Root cause |
+|---|---|---|
+| E1 | Starts exploring the codebase before executing the actual task | Over-preparation |
+| E2 | Runs independent tasks sequentially instead of in parallel | Not using concurrency |
+| E3 | Produces a long output without checkpointing | Not managing output cadence |
+| E4 | Core task incomplete because detours consumed the time budget | Premature scope expansion |
+
+## Precision
+
+| # | Anti-pattern | Root cause |
+|---|---|---|
+| P1 | Asked to change A/B/C, also changed D/E/F | Self-expanded scope |
+| P2 | Debugged wrong file or used wrong logger | Did not confirm error source |
+| P3 | Described content by fabricating details | Did not check primary source |
+| P4 | Cross-session development left no record of design decisions | No ADR habit |
+| P5 | `git add -A` included credentials or tokens | Imprecise file staging |
+| P6 | Public-facing doc used wrong language for the audience | Did not consider target audience |
+| P7 | Solution was over-engineered; user pointed out the obvious simpler path | Over-engineering |
+| P8 | Acted without checking external state first (e.g., pushed to an already-merged branch) | Did not verify current state before acting |
+
+## Root Cause Thinking
+
+| # | Anti-pattern | Root cause |
+|---|---|---|
+| R1 | Iterated on symptoms (tuning filters, adjusting thresholds) without verifying that upstream functions are actually called with correct arguments | Treating symptoms, not causes |
+| R2 | Designed a fix based on reading code and inferring behavior, rather than checking actual logs | Inference over data |
+| R3 | Adopted a suggestion from a code review or subagent without validating assumptions against runtime data | Trusting reasoning over evidence |
+| R4 | Spent N rounds on the same problem, each round a minor tweak rather than questioning the approach | Sunk cost thinking |
+| R5 | Did not verify new code is live after deploy (build passing ≠ runtime running the new version) | Deploy not confirmed |
+
+## Global Awareness
+
+| # | Anti-pattern | Root cause |
+|---|---|---|
+| H1 | Changed one instance of a pattern; other instances not updated | Local-only fix |
+| H2 | Answered a UX question with a purely technical/API analysis | Perspective mismatch |
+| H3 | Noticed dead code or duplicate logic but did not flag or address it | No quality initiative |
+| H4 | Changed code without updating docs, README, or tests | No change checklist |
+| H5 | Committed large binary assets without compression | No asset quality awareness |
+| H6 | "Check the logs" interpreted as "check the code diff" | Misread actual user need |
+
+---
+
+## Update Rules
+
+- New friction type → append to the matching category
+- **Must be abstract**: remove all project names, file names, and session-specific details; keep only the pattern
+- Same root cause appears 3+ times → strengthen the corresponding principle in SKILL.md
+- Fully internalized cases → mark `[internalized]` to reduce reading overhead

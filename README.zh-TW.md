@@ -12,23 +12,21 @@
 
 ```
 ai-toolkit/
-├── agents/
-│   ├── dispatch/          # SOP 式 agent，提升 subagent 品質
-│   │   ├── analyst.md      # 架構設計 / 實作規劃 / 健康稽核
-│   │   ├── investigator.md # 搜尋 / 探索 / 除錯 / 外部調查
-│   │   ├── builder.md      # 程式碼實作 / 測試
-│   │   ├── reviewer.md     # Code review / 死碼清理
-│   │   └── doc-sync.md     # 文件初始化 / 文件同步
-│   └── interactive/
-│       └── agent-factory.md  # 設計並產生新 agent
-├── skills/
-│   ├── handoff/           # Session 交接
-│   ├── thorough/          # 極致交付模式
-│   ├── project-docs/      # 專案文件結構模板
-│   ├── agentskill-expertise/
-│   ├── collaboration-style/
-│   └── self-growth/
-└── statusline/            # 成本與 context 監控
+├── agents/                  # SOP 式 agent（symlink 到 ~/.claude/agents/）
+│   ├── analyst.md           # 架構設計 / 實作規劃 / 健康稽核
+│   ├── investigator.md      # 搜尋 / 探索 / 除錯 / 外部調查
+│   ├── builder.md           # 程式碼實作 / 測試
+│   ├── reviewer.md          # Code review / 死碼清理
+│   ├── doc-sync.md          # 文件初始化 / 文件同步
+│   └── agent-factory.md     # 設計並產生新 agent
+├── skills/                  # Skills（symlink 到 ~/.claude/skills/）
+│   ├── handoff/             # Session 交接
+│   ├── thorough/            # 極致交付模式
+│   ├── project-docs/        # 專案文件結構模板
+│   ├── agentskill-expertise/ # Skill 設計知識庫
+│   ├── collaboration-style/ # AI-人類協作框架
+│   └── self-growth/         # 持續學習框架
+└── statusline/              # 成本與 context 監控
 ```
 
 ## Dispatch Agents
@@ -37,11 +35,11 @@ ai-toolkit/
 
 | Agent | 模型 | 模式 | 分派時機 |
 |-------|------|------|---------|
-| [`analyst`](agents/dispatch/analyst.md) | opus | 架構 / 規劃 / 稽核 | 「設計這個」「規劃實作」「稽核 codebase」 |
-| [`investigator`](agents/dispatch/investigator.md) | sonnet | 搜尋 / 探索 / 除錯 / 外部 | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
-| [`builder`](agents/dispatch/builder.md) | sonnet | 建立 / 修改 / 測試 | 「實作這個」「改 handler」「幫 X 寫測試」 |
-| [`reviewer`](agents/dispatch/reviewer.md) | sonnet | Review / 清理 | 「review 這段 code」「找死碼」「清理 unused exports」 |
-| [`doc-sync`](agents/dispatch/doc-sync.md) | sonnet | 初始化 / 同步 | 「建立專案文件」「code 改了同步文件」 |
+| [`analyst`](agents/analyst.md) | opus | 架構 / 規劃 / 稽核 | 「設計這個」「規劃實作」「稽核 codebase」 |
+| [`investigator`](agents/investigator.md) | sonnet | 搜尋 / 探索 / 除錯 / 外部 | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
+| [`builder`](agents/builder.md) | sonnet | 建立 / 修改 / 測試 | 「實作這個」「改 handler」「幫 X 寫測試」 |
+| [`reviewer`](agents/reviewer.md) | sonnet | Review / 清理 | 「review 這段 code」「找死碼」「清理 unused exports」 |
+| [`doc-sync`](agents/doc-sync.md) | sonnet | 初始化 / 同步 | 「建立專案文件」「code 改了同步文件」 |
 
 每個 agent 根據分派 context 自動判斷模式。一個 agent，多個工作流程。
 
@@ -57,7 +55,7 @@ ai-toolkit/
 
 | Agent | 說明 |
 |-------|------|
-| [`agent-factory`](agents/interactive/agent-factory.md) | 設計並產生新 agent——調研最佳實踐、分析需求、輸出可用的 agent prompt |
+| [`agent-factory`](agents/agent-factory.md) | 設計並產生新 agent——調研最佳實踐、分析需求、輸出可用的 agent prompt |
 
 ## Skills
 

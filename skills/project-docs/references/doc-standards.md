@@ -1,51 +1,51 @@
-# 文件撰寫規範
+# Documentation Standards
 
-## 基本原則
+## Core Principles
 
-- **簡潔**：每個文件只說一件事
-- **具體**：避免空泛的描述，用例子說明
-- **可更新**：文件要容易維護，不要寫死的東西
+- **Concise**: Each document covers one thing only
+- **Concrete**: Avoid vague descriptions — use examples
+- **Maintainable**: Write docs that are easy to update; avoid hardcoded assumptions
 
-## ADR（架構決策記錄）格式
-
-```markdown
-# ADR-[編號]: [標題]
-
-## 狀態
-[提議中 / 已採納 / 已棄用]
-
-## 背景
-[為什麼需要做這個決策？面對的問題是什麼？]
-
-## 決策
-[我們選擇了什麼？]
-
-## 理由
-[為什麼選這個？考慮了哪些替代方案？]
-
-## 後果
-[這個決策帶來什麼影響？好的和壞的都要寫。]
-```
-
-## 功能故事格式
+## ADR (Architecture Decision Record) Format
 
 ```markdown
-# [功能名稱]
+# ADR-[number]: [title]
 
-## 背景
-[這個功能為什麼存在？]
+## Status
+[Proposed / Accepted / Deprecated]
 
-## 問題
-[要解決什麼痛點？]
+## Context
+[Why does this decision need to be made? What problem are we facing?]
 
-## 解法
-[我們怎麼做的？]
+## Decision
+[What did we choose?]
 
-## 演進
-[這個功能後來有什麼變化？]
+## Rationale
+[Why this option? What alternatives were considered?]
+
+## Consequences
+[What are the implications of this decision? Include both positive and negative outcomes.]
 ```
 
-## 命名規範
+## Feature Story Format
 
-- ADR 檔案：`adr-[編號]-[kebab-case-標題].md`（例：`adr-001-use-event-bus.md`）
-- 功能故事：`[kebab-case-功能名].md`（例：`multi-agent-delegation.md`）
+```markdown
+# [Feature Name]
+
+## Background
+[Why does this feature exist?]
+
+## Problem
+[What pain point does it address?]
+
+## Solution
+[How did we implement it?]
+
+## Evolution
+[How has this feature changed over time?]
+```
+
+## Naming Conventions
+
+- ADR files: `adr-[number]-[kebab-case-title].md` (e.g. `adr-001-use-event-bus.md`)
+- Feature stories: `[kebab-case-feature-name].md` (e.g. `multi-agent-delegation.md`)

@@ -5,163 +5,163 @@ description: "Session handoff — compress current context into a structured pro
 
 # Session Handoff
 
-把當前對話的關鍵 context 壓縮成一段 prompt，讓使用者貼到新 session 後，新 AI 能直接接手工作。
+Compress the critical context from the current conversation into a prompt so the user can paste it into a new session and the new AI can pick up the work immediately.
 
-## 核心問題
+## The Problem
 
-長 session 累積的 cache token 會拖慢回應、吃掉額度。但直接開新 session 會丟失所有對話 context。
-這個 skill 解決的問題是：**壓縮 context，不丟失 context。**
+Long sessions accumulate cache tokens that slow responses and drain quota. But starting a new session cold loses all conversation context.
+This skill solves: **compress context, don't lose context.**
 
-## 執行步驟
+## Execution Steps
 
-### Phase 1：回溯掃描
+### Phase 1: Retrospective Scan
 
-逐段回溯整段對話歷史。因為早期 context 容易被 attention 衰減或 compression 截斷，**從對話開頭往後掃**，不要只依賴近期記憶。
+Scan back through the entire conversation history in sequence. Early context is easily lost to attention decay or compression truncation — **scan from the beginning forward**, don't rely only on recent memory.
 
-掃描時對每條資訊標記優先級：
-- **P0（必帶）**：丟了會導致新 session 犯錯、重做、或違反使用者意圖的資訊
-- **P1（應帶）**：提高效率、避免繞路，但丟了不致命
+Tag each piece of information with a priority:
+- **P0 (must include)**: information that, if lost, would cause the new session to make errors, redo work, or violate user intent
+- **P1 (should include)**: improves efficiency and avoids detours, but not fatal if lost
 
-P0 標準：使用者的指示與修正、未完成的任務狀態、關鍵決策與排除的方案、已知的坑。
-P1 標準：技術細節、輔助 context、參考資源、已完成項目的細節。
+P0 criteria: user instructions and corrections, incomplete task state, key decisions and ruled-out alternatives, known pitfalls.
+P1 criteria: technical details, supporting context, reference resources, details of already-completed items.
 
-### Phase 2：組織輸出
+### Phase 2: Organize Output
 
-按照下方提取清單與輸出格式組織內容。P0 全部保留，P1 視 handoff 總長度取捨。
+Organize content according to the extraction checklist and output format below. Keep all P0 items; include P1 items based on total handoff length.
 
-### Phase 3：自驗
+### Phase 3: Self-Verification
 
-輸出前，對照提取清單逐項確認：
+Before output, go through the extraction checklist item by item:
 
-- [ ] 對話中每個獨立任務/工作流都有涵蓋？
-- [ ] 使用者所有指示和修正都已逐條列出？
-- [ ] 關鍵決策都附帶了「為什麼」和「排除了什麼」？
-- [ ] 踩過的坑都記了？（不只是失敗方案，還有環境限制、行為異常）
-- [ ] 下一步是否具體到可直接執行？
-- [ ] 有沒有對話中建立的重要認知沒被任何 section 涵蓋？
+- [ ] Every independent task/workflow in the conversation is covered?
+- [ ] All user instructions and corrections are listed individually?
+- [ ] Key decisions include both "why" and "what was ruled out"?
+- [ ] Known pitfalls are recorded? (not just failed approaches, but also environment constraints and unexpected behaviors)
+- [ ] Next steps are specific enough to execute immediately?
+- [ ] Any important understanding built during the conversation not covered by any section?
 
-對低信心的項目（記不清細節、不確定是否完整），在該條目旁標注 `[⚠ 請使用者確認]`。
+For low-confidence items (fuzzy on details, uncertain if complete), annotate the entry with `[⚠ Please confirm with user]`.
 
-### Phase 4：交付確認
+### Phase 4: Delivery Confirmation
 
-輸出 handoff，然後請使用者確認。
+Output the handoff, then ask the user to confirm.
 
-## 提取清單
+## Extraction Checklist
 
-**P0 項目必須逐條列出，不省略不合併。P1 項目在 handoff 超過 4000 token 時可精簡。**
+**P0 items must be listed individually — no omissions, no merging. P1 items may be condensed when handoff exceeds 4000 tokens.**
 
-### 任務與進度
+### Tasks and Progress
 
-如果對話涉及多個獨立工作流，**按工作流分組**，不要混在一條線性列表裡。
+If the conversation involved multiple independent workflows, **group by workflow** — don't flatten everything into one linear list.
 
-每個工作流包含：
-- **任務目標**：在做什麼、為什麼做
-- **當前狀態**：做到哪了、什麼完成了、什麼還沒做
-- **下一步**：新 session 應該接著做什麼（寫成可直接執行的指令）
+Each workflow includes:
+- **Task goal**: what's being done and why
+- **Current state**: how far along, what's done, what's not
+- **Next step**: what the new session should do next (written as a directly executable instruction)
 
-### 使用者在本次對話中給過的指示 [P0]
+### User Instructions Given in This Session [P0]
 
-這是換 session 時最容易丟失的資訊。逐條列出，**保留原話**：
-- **回應方式的要求**：語氣、格式、風格、「永遠要 X」「不要 Y」
-- **對 AI 行為的修正**：使用者糾正過的方向、打斷重來的原因
-- **明確的偏好與決策**：選了什麼方案、為什麼、排除了什麼
+This is the information most easily lost when switching sessions. List each one individually, **preserve the original wording**:
+- **Response requirements**: tone, format, style, "always do X", "never do Y"
+- **Behavioral corrections**: directions the user corrected, reasons for redirects
+- **Explicit preferences and decisions**: which option was chosen, why, what was ruled out
 
-### 對話中建立的共識與認知 [P0]
+### Shared Understanding Built in This Conversation [P0]
 
-對話過程中逐漸形成、雙方已不需要再說明的理解。這些是新 session 最容易缺失的隱性知識：
-- **對 codebase 的認知**：「X 模組的行為跟文件不一致，實際上是…」「Y 的 API 有 Z 限制」
-- **對問題的理解**：經過討論後對 root cause 的判斷、對需求的澄清
-- **方案演化**：最終方案是怎麼演化來的（A → 發現問題 → 改 B → 加上 C 的約束 → 最終方案 D）
+Understanding that developed gradually through the conversation and no longer needs to be re-explained by either party. This is the tacit knowledge most likely to be missing in a new session:
+- **Codebase understanding**: "Module X behaves differently from the docs — what it actually does is…", "API Y has constraint Z"
+- **Problem understanding**: root cause judgment reached through discussion, clarified requirements
+- **Solution evolution**: how the final approach evolved (A → found problem → switched to B → added constraint C → final solution D)
 
-不只記「結論」，要記「為什麼是這個結論」。
+Record not just the "conclusion" but "why that conclusion."
 
-### 工作 Context
+### Working Context
 
-- **工作目錄與相關檔案**：路徑 + 每個檔案的狀態（已改/新建/待改）+ 改了什麼
-- **關鍵決策與理由**：做了什麼選擇、為什麼這樣選、**排除了哪些替代方案及原因**
-- **踩過的坑**：失敗過的方案、環境限制、要避開的路線、非預期行為
-- **技術細節** [P1]：架構、依賴、版本、特殊配置
+- **Working directory and relevant files**: path + status of each file (modified/created/pending) + what changed
+- **Key decisions and rationale**: what choices were made, why, **which alternatives were ruled out and why**
+- **Known pitfalls**: failed approaches, environment constraints, routes to avoid, unexpected behaviors
+- **Technical details** [P1]: architecture, dependencies, versions, special configuration
 
-### 未收尾的事項
+### Unresolved Items
 
-- **未解決的問題**：還沒答案的疑問、待確認的事項
-- **外部資源** [P1]：參考過的文件、URL、API
+- **Open questions**: unanswered questions, items pending confirmation
+- **External resources** [P1]: referenced documentation, URLs, APIs
 
-## 輸出原則
+## Output Principles
 
-- **原話保留（verbatim）**：使用者的指示、修正、偏好，用引號逐字保留，不改寫不摘要。新 session 要「聽到」使用者本人的聲音，不是 AI 的轉述
-- **具體不抽象**：寫檔案路徑、函式名、指令、錯誤訊息，不寫「某個檔案」「那個 bug」
-- **可執行**：「下一步」要寫到新 session 的 AI 拿到就能直接動手的程度
-- **不複製檔案內容**：只記路徑和關鍵發現，不把整個檔案貼進來
-- **自足性**：handoff 必須是 self-contained 的。新 session 只靠這段 handoff 就要能正常工作，不依賴任何外部狀態。所有重要 context 都應包含在 handoff 中（重複的可用一行摘要帶過，但不可省略）。原因：這份 handoff 可能被貼到任何 AI 環境（Claude.ai、ChatGPT、其他工具），不是只有 Claude Code 會用——不要假設新 session 有 memory 系統、CLAUDE.md、或任何持久化機制
+- **Verbatim**: user instructions, corrections, and preferences are quoted word-for-word — not paraphrased or summarized. The new session needs to "hear" the user's actual voice, not the AI's interpretation
+- **Concrete not abstract**: write file paths, function names, commands, error messages — not "some file" or "that bug"
+- **Executable**: "Next step" must be written so the AI in the new session can act on it immediately
+- **Don't copy file contents**: record paths and key findings only — don't paste entire files
+- **Self-contained**: the handoff must stand alone. The new session should be able to function normally with only this handoff, without depending on any external state. All important context must be included (repeated items can be summarized in one line, but must not be omitted). Reason: this handoff may be pasted into any AI environment (Claude.ai, ChatGPT, other tools) — not just Claude Code. Do not assume the new session has a memory system, CLAUDE.md, or any persistence mechanism
 
-## 輸出格式
+## Output Format
 
-輸出一個 markdown code block，結構如下。每個 section 只在有內容時才出現：
+Output a single markdown code block with the following structure. Sections only appear when they have content:
 
 ````
 # Session Handoff — {YYYY-MM-DD}
 
-## 背景
-{一到兩句話描述任務和動機}
+## Background
+{One or two sentences describing the task and motivation}
 
-## 工作目錄
-{專案路徑}
+## Working Directory
+{Project path}
 
-## 進度
+## Progress
 
-### 工作流 A：{名稱}（如果只有一個工作流則不分組）
-**已完成**
-- {具體完成事項，附檔案路徑}
+### Workflow A: {Name} (omit grouping if only one workflow)
+**Completed**
+- {Specific completed items, with file paths}
 
-**進行中 / 待完成**
-- {未完成事項，附當前狀態和卡在哪}
+**In Progress / Pending**
+- {Incomplete items, with current state and where things are stuck}
 
-**下一步**
-{寫成直接可執行的指令}
+**Next Step**
+{Written as a directly executable instruction}
 
-### 工作流 B：{名稱}
+### Workflow B: {Name}
 ...
 
-## 共識與認知
-（對話中建立的關鍵理解，新 session 不讀這段就可能判斷錯誤的）
-- {認知內容}
-- {方案演化}：A（因為 X 不行）→ B（因為 Y 限制）→ 最終 C
+## Shared Understanding
+(Key understanding built during the conversation — missing this would cause incorrect judgments in the new session)
+- {Understanding}
+- {Solution evolution}: A (failed because X) → B (constrained by Y) → final C
 
-## 關鍵決策
-- {決策} — 因為：{原因} — 排除了：{替代方案及排除理由}
+## Key Decisions
+- {Decision} — Because: {reason} — Ruled out: {alternatives and why}
 
-## 相關檔案
-| 檔案 | 狀態 | 說明 |
-|------|------|------|
-| {path} | 已改/新建/待改 | {做了什麼或要做什麼} |
+## Relevant Files
+| File | Status | Notes |
+|------|--------|-------|
+| {path} | modified/created/pending | {what was done or needs to be done} |
 
-## 踩過的坑
-- {失敗的方案或要避開的路線} — 原因：{為什麼失敗}
+## Known Pitfalls
+- {Failed approach or route to avoid} — Reason: {why it failed}
 
-## 使用者指示
-（逐條列出，保留原話，不合併不省略）
-- 回應方式："{原話}"
-- 行為修正："{原話}" — 背景：{為什麼這樣糾正}
-- 偏好/決策："{原話}"
+## User Instructions
+(Listed individually, verbatim, no merging, no omissions)
+- Response style: "{exact words}"
+- Behavioral correction: "{exact words}" — Context: {why this correction was given}
+- Preference/decision: "{exact words}"
 
-## 未解決
-- {待確認或還沒答案的問題}
+## Unresolved
+- {Items pending confirmation or still unanswered}
 ````
 
-## 長度控管
+## Length Management
 
-| handoff 預估長度 | 策略 |
+| Estimated handoff length | Strategy |
 |---|---|
-| < 2000 token | 全部展開，不需精簡 |
-| 2000-4000 token | P0 全部保留，P1 精簡為一行摘要 |
-| > 4000 token | P0 全部保留，P1 只保留「新 session 第一步就需要」的項目，其餘省略並標注「詳見 {檔案路徑}」 |
+| < 2000 tokens | Expand everything, no condensing needed |
+| 2000–4000 tokens | Keep all P0, condense P1 to one-line summaries |
+| > 4000 tokens | Keep all P0, include only P1 items needed for the new session's first step, omit the rest and note "see {file path}" |
 
-如果即使只保留 P0 仍超過 6000 token，將已完成的工作流壓縮為一行摘要（「已完成 X，詳見 git log」），把空間留給進行中和待完成的工作。
+If keeping only P0 still exceeds 6000 tokens, compress completed workflows to a one-line summary ("Completed X — see git log") and reserve space for in-progress and pending work.
 
-## 補充行為
+## Supplemental Behavior
 
-- 產出 handoff 後，明確告知使用者低信心項目，並問：「以上是完整交接內容，有沒有遺漏？」
-- 如果對話中有產出過 plan 或 task list，整合進「進度」和「下一步」
-- 如果使用者在對話中給過的指示超過 3 條，在 handoff 末尾加一行確認：「以上共 N 條使用者指示，已全部列出。」
-- **（僅 Claude Code 環境）** 如果對話中有值得持久保存的 feedback 或 project context 尚未寫入 memory，**先寫入 memory，再產出 handoff**。handoff 是一次性的，memory 才是跨 session 的持久層。在非 Claude Code 環境中忽略此步驟
+- After producing the handoff, explicitly flag low-confidence items and ask: "The above is the complete handoff — anything missing?"
+- If a plan or task list was produced during the conversation, integrate it into "Progress" and "Next Step"
+- If the user gave more than 3 instructions during the conversation, add a line at the end of the handoff: "The above contains N user instructions — all listed."
+- **(Claude Code environment only)** If the conversation contains feedback or project context worth persisting that hasn't been written to memory yet, **write it to memory first, then produce the handoff**. The handoff is one-time; memory is the persistent layer across sessions. Ignore this step in non-Claude Code environments.

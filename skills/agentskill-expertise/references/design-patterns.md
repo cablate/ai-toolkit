@@ -1,52 +1,52 @@
-# Agent Skill 設計模式與反模式
+# Agent Skill Design Patterns and Anti-Patterns
 
-> **與 SKILL.md 的關係**：這是 SKILL.md「設計原則」和「常見誤區」的快查速查表。SKILL.md 有完整解釋和引用來源，這裡提供代號化的速查格式，方便在 Review 或設計時快速比對。
+> **Relationship to SKILL.md**: This is a quick-reference companion to the "Design Principles" and "Common Misconceptions" sections of SKILL.md. SKILL.md has the full explanations and source citations; this file provides a coded quick-reference format for fast lookup during review or design sessions.
 
-## 設計模式
+## Design Patterns
 
-### P1：原則導向
-**情境**：希望 AI 能處理未預見的情況
-**做法**：給核心原則和價值觀，不窮舉規則
-**對比**：
-- ❌「遇到 A 做 X，遇到 B 做 Y」→ 規則沒覆蓋的就不處理
-- ✅「主動預判問題、讓使用者專注在重要的事」→ AI 自己判斷何時介入
+### P1: Principle-Driven
+**Situation**: You want AI to handle unforeseen situations
+**Approach**: Give core principles and values, don't enumerate rules
+**Contrast**:
+- ❌ "If A, do X; if B, do Y" → Cases not covered don't get handled
+- ✅ "Proactively anticipate problems, let the user focus on what matters" → AI judges when to intervene
 
-### P2：世界觀驅動
-**情境**：希望 AI 產出有「靈魂」，不只技術正確
-**做法**：定義角色的世界觀/價值觀，讓風格從世界觀自然浮現
-**對比**：
-- ❌「不要用某些字」→ AI 換個方式寫，問題還在
-- ✅「不希望散發焦慮感」→ AI 理解為什麼，自動避開所有焦慮型寫法
+### P2: Worldview-Driven
+**Situation**: You want AI output to have "soul", not just technical correctness
+**Approach**: Define the role's worldview/values, let style emerge naturally from the worldview
+**Contrast**:
+- ❌ "Don't use certain words" → AI writes around them, the problem remains
+- ✅ "I don't want the tone to feel anxious" → AI understands why, automatically avoids all anxiety-inducing patterns
 
-### P3：協議與人格分離
-**情境**：建立可維護、可複製的 AI 助理
-**做法**：「怎麼做」和「是誰」拆成兩個獨立 Skill，CLAUDE.md 只放入口
-**好處**：精簡入口、人格可攜帶、協議和人格可靈活組合
+### P3: Protocol and Persona Separation
+**Situation**: Building a maintainable, portable AI assistant
+**Approach**: Split "how to behave" and "who it is" into two independent Skills; CLAUDE.md only holds the entry point
+**Benefits**: Lean entry point, portable persona, protocols and persona can be flexibly combined
 
-### P4：情境觸發 Description
-**情境**：希望 Skill 在正確時機被載入
-**做法**：description 描述「使用情境」而非「功能分類」
-**對比**：
-- ❌「專案知識管理 Skill」→ 不知何時觸發
-- ✅「當討論架構決策、技術選型時觸發」→ 觸發時機明確
+### P4: Situation-Triggered Description
+**Situation**: You want the Skill to be loaded at the right moment
+**Approach**: description describes "usage scenarios" not "feature categories"
+**Contrast**:
+- ❌ "Project knowledge management Skill" → Unclear when to trigger
+- ✅ "Trigger when discussing architecture decisions or technology selection" → Clear trigger condition
 
-### P5：先拆後合
-**情境**：不確定 Skill 的顆粒度
-**做法**：先為每個場景各做一個 Skill，發現核心原則重疊後再合併，用情境分流
+### P5: Split First, Merge Later
+**Situation**: Uncertain about Skill granularity
+**Approach**: Create a separate Skill for each scenario first; once you discover overlapping core principles, merge into one Skill with situation-based branching
 
-### P6：被動預載架構
-**情境**：多個文件想讓 AI 按需讀取
-**做法**：不在 CLAUDE.md 窮舉「記得讀 X」，做成 Skill 的 references 讓 metadata 預載
+### P6: Passive Pre-load Architecture
+**Situation**: Multiple documents you want AI to read on demand
+**Approach**: Don't enumerate "remember to read X" in CLAUDE.md; make them Skill references so metadata pre-loads automatically
 
 ---
 
-## 反模式
+## Anti-Patterns
 
-| 代號 | 症狀 | 問題 | 修正 |
-|------|------|------|------|
-| A1 規則窮舉 | SKILL.md 50+ 條規則 | 遇到沒寫的就失靈 | 提煉核心原則取代 |
-| A2 功能導向 Description | 「這是一個 XXX Skill」 | AI 不知何時觸發 | 改為情境導向 |
-| A3 CLAUDE.md 膨脹 | 200+ 行，充滿「記得讀 X」 | 忘記寫就不讀 | 拆成 Skill，被動預載 |
-| A4 完美主義 | 遲遲沒有 v1.0 | 永遠不會完成 | MV Skill，測試後迭代 |
-| A5 模仿範本 | 照抄別人的 Skill | 別人的痛點不是你的 | 從自己的協作痛點出發 |
-| A6 Tool Overload | 30+ 個 Skill | Context Confusion，AI 幻覺 | 精簡到真正需要的 |
+| Code | Symptom | Problem | Fix |
+|------|---------|---------|-----|
+| A1 Rule enumeration | SKILL.md with 50+ rules | Fails on uncovered cases | Distill into core principles |
+| A2 Feature-oriented description | "This is an XXX Skill" | AI doesn't know when to trigger | Switch to situation-oriented |
+| A3 CLAUDE.md bloat | 200+ lines, full of "remember to read X" | Forgotten entries don't get read | Split into Skills, passive pre-load |
+| A4 Perfectionism | Never ships a v1.0 | Will never be finished | MV Skill, test then iterate |
+| A5 Copying templates | Directly copying someone else's Skill | Their pain points aren't yours | Start from your own collaboration pain points |
+| A6 Tool overload | 30+ Skills | Context confusion, AI hallucinations | Trim to only what's genuinely needed |

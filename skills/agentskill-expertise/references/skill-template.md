@@ -1,6 +1,6 @@
-# Skill 設計模板
+# Skill Design Template
 
-> 基於 agentskill-expertise 設計原則。複製後依引導填入內容，完成後刪除所有 `💡` 引導文字。
+> Based on agentskill-expertise design principles. Copy this template, fill in the content following the guidance, and delete all `💡` guide text when done.
 
 ---
 
@@ -9,129 +9,129 @@
 ```yaml
 ---
 name: [skill-name]
-description: [見下方 Description 撰寫引導]
+description: [see Description Writing Guide below]
 ---
 ```
 
-### Description 撰寫引導
+### Description Writing Guide
 
-💡 **原則**：描述「使用情境」，不是「功能分類」
+💡 **Principle**: Describe "usage scenarios", not "feature categories"
 
-- ❌「專案知識管理 Skill」→ 不知何時觸發
-- ✅「當討論架構決策、技術選型時觸發」→ 觸發時機明確
+- ❌ "Project knowledge management Skill" → Unclear when to trigger
+- ✅ "Trigger when discussing architecture decisions or technology selection" → Clear trigger condition
 
-**建議結構**：一句話定位 + 使用情境列舉 + 主動更新時機
+**Recommended structure**: One-sentence positioning + list of usage scenarios + proactive update triggers
 
-**限制**：所有 Skill 共用 15,000 字元預算，精簡但有資訊量
+**Constraint**: All Skills share a 15,000 character budget — be concise but information-dense
 
 ---
 
-## SKILL.md 本體
+## SKILL.md Body
 
 ```markdown
-# {Skill Name} - {一句話定位}
+# {Skill Name} - {One-sentence positioning}
 
-## 概述
+## Overview
 
-[這個 Skill 解決什麼問題？沒有它 AI 會怎樣？有了之後不同在哪？]
+[What problem does this Skill solve? What happens without it? What's different with it?]
 
-💡 2-3 句話說清楚核心價值。
-
----
-
-## 核心原則
-
-[列出 3-5 條核心原則/價值觀]
-
-💡 給原則，不是給規則。
-- 一條原則涵蓋一大片規則
-- 10+ 條具體規則 → 試著提煉成 2-3 條原則
-- 格式建議：原則名稱 + 一句話解釋 + 對比（❌ vs ✅）
-
-| 原則 | 說明 | 對比 |
-|------|------|------|
-| [原則 1] | [為什麼這很重要] | ❌ ... → ✅ ... |
-| [原則 2] | [為什麼這很重要] | ❌ ... → ✅ ... |
+💡 2-3 sentences to make the core value clear.
 
 ---
 
-## [核心內容區 — 自由命名]
+## Core Principles
 
-[根據 Skill 類型自由組織主體知識]
+[List 3-5 core principles/values]
 
-💡 注意：
-- SKILL.md 總量 < 5k tokens
-- 長內容（案例庫、詳細參考）→ references/
-- 至少包含一個具體範例
+💡 Give principles, not rules.
+- One principle covers a wide range of rules
+- 10+ specific rules → try to distill into 2-3 principles
+- Suggested format: principle name + one-sentence explanation + contrast (❌ vs ✅)
 
----
-
-## 何時更新這份 Skill
-
-> **AI 主動更新規則**：以下情境發生時，AI 應主動提議更新，不需等使用者要求。
-
-| 情境 | 更新什麼 | 操作 |
-|------|----------|------|
-| [觸發情境 1] | [哪個檔案/章節] | [追加/修改/新增] |
-| [觸發情境 2] | [哪個檔案/章節] | [追加/修改/新增] |
-
-### 更新原則
-
-1. **實證驅動**：只收錄經過實踐驗證的洞察
-2. **保留脈絡**：更新時標注「何時、因何事發現」
-3. **精簡為上**：這份 Skill 本身也要遵循「少即是多」
-
-### AI 行為指引
-
-- 協作過程中發現新模式 → **主動提議**更新
-- 完成相關工作後 → **自動詢問**是否追加到案例庫
-- 使用者的需求明顯觸發本 Skill 但沒指定 → **主動建議載入**
+| Principle | Explanation | Contrast |
+|-----------|-------------|---------|
+| [Principle 1] | [Why this matters] | ❌ ... → ✅ ... |
+| [Principle 2] | [Why this matters] | ❌ ... → ✅ ... |
 
 ---
 
-## 參考資源
+## [Core Content Section — Name It Freely]
 
-- **[資源名稱]**：`references/[filename].md`
+[Organize the main body of knowledge freely based on the Skill type]
+
+💡 Notes:
+- SKILL.md total < 5k tokens
+- Long content (case libraries, detailed reference) → references/
+- Include at least one concrete example
+
+---
+
+## When to Update This Skill
+
+> **AI proactive update rule**: When the following situations occur, AI should proactively propose updates without waiting for the user to ask.
+
+| Situation | Update What | Operation |
+|-----------|------------|-----------|
+| [Trigger situation 1] | [Which file/section] | [append/modify/add] |
+| [Trigger situation 2] | [Which file/section] | [append/modify/add] |
+
+### Update Principles
+
+1. **Evidence-driven**: Only document insights validated through practice
+2. **Preserve context**: When updating, note "when and what prompted this discovery"
+3. **Lean is paramount**: This Skill itself must follow "less is more"
+
+### AI Behavior Guidelines
+
+- Discovered a new pattern during collaboration → **proactively propose** an update
+- After completing relevant work → **automatically ask** whether to append to the case library
+- User's need clearly triggers this Skill but they didn't specify → **proactively suggest loading**
+
+---
+
+## Reference Resources
+
+- **[Resource Name]**: `references/[filename].md`
 ```
 
 ---
 
-## references/ 結構
+## references/ Structure
 
 ```
 references/
-├── [核心延伸].md      ← 主要的詳細內容
-├── [案例或模式庫].md   ← 可持續追加的累積型文件
-└── [其他按需新增]
+├── [core extension].md      ← primary detailed content
+├── [case or pattern library].md   ← accumulative document, can be appended continuously
+└── [others added as needed]
 ```
 
-💡 references 是 Level 3（按需載入），適合放：
-- 詳細案例庫（持續追加型）
-- 官方引用與證據
-- 延伸參考資料
-- 不適合放在 SKILL.md 的長內容
+💡 References are Level 3 (loaded on demand). Good fits:
+- Detailed case libraries (continuously accumulating type)
+- Official citations and evidence
+- Extended reference material
+- Long content that doesn't belong in SKILL.md
 
 ---
 
-## 完成後自檢
+## Post-Completion Self-Check
 
 ### Description
-- [ ] 情境導向，不是功能分類
-- [ ] AI 讀完能判斷「什麼時候該載入」
-- [ ] 精簡但資訊量足夠
-- [ ] 包含主動更新時機
+- [ ] Situation-oriented, not feature-category-oriented
+- [ ] After reading, AI can judge "when to load this"
+- [ ] Concise but information-dense
+- [ ] Includes proactive update triggers
 
-### 內容
-- [ ] 原則/價值觀為主，不是規則窮舉
-- [ ] 有具體範例（至少一個）
+### Content
+- [ ] Primarily principles/values, not rule enumeration
+- [ ] Has concrete examples (at least one)
 - [ ] SKILL.md < 5k tokens
-- [ ] 長內容在 references/
+- [ ] Long content is in references/
 
-### 架構
-- [ ] 一個 Skill 解決一類問題
-- [ ] 與其他 Skill 沒有大面積重疊
+### Architecture
+- [ ] One Skill solves one class of problems
+- [ ] No significant overlap with other Skills
 
-### 可維護性
-- [ ] 有「何時更新」說明
-- [ ] 結構允許追加而不需重寫
-- [ ] references 是獨立文件，可單獨更新
+### Maintainability
+- [ ] Has a "when to update" statement
+- [ ] Structure allows appending without requiring a rewrite
+- [ ] References are independent documents that can be updated separately

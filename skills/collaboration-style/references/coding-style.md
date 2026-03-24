@@ -1,75 +1,80 @@
-# 開發協作風格
+# Development Collaboration Style
 
-> 最後更新：2026-03-19
+> Fill in this template with the user's actual preferences. Delete placeholder text when filled in.
 
-## 設計思維
+## Design Thinking
 
-### 架構優先
+### Architecture first
 
-從設計語意出發，不從「能不能跑」出發。
+Prioritize semantic correctness over "does it run."
 
-- 分層正確：core 不依賴 adapter、types 不依賴上層
-- 功能對等：平台 A 有的，平台 B 也要有
-- 命名一致：同類概念必須同 prefix
-- 先問設計是否合理，再問程式是否正確
+> Example values:
+> - Correct layering: core does not depend on adapters; types do not depend on higher layers
+> - Feature parity: if platform A has it, platform B should too
+> - Consistent naming: same conceptual family → same prefix
+> - Ask "is the design right" before "is the code correct"
 
-### 語意精確
+### Semantic precision
 
-每個值、每個欄位都要理解真正語意。不接受「差不多」。
+Every value and field should reflect its true meaning. "Close enough" is not acceptable.
 
-- 數字對不上就追問到底——不要猜，查 DB、讀原始碼、算出來
-- 區分語意邊界：close vs reset、累計 vs 增量、sessionId vs sdkSessionId
+> Example values:
+> - If numbers don't add up, trace to the source — don't guess, check the DB, read the source, compute it
+> - Maintain clear semantic boundaries between similar-sounding concepts
 
-### 端到端閉環
+### End-to-end closure
 
-改一處必問上下游影響。
+Any change must prompt a check of upstream and downstream impact.
 
-- 修了一處 → 問其他相同路徑
-- 加了功能 → 問文件、測試、config 是否同步
-- 修完 → 自問「這個改動在其他路徑有同樣問題嗎？」
-
----
-
-## 品質基線
-
-| 面向 | 標準 |
-|------|------|
-| Build | 每次改動必須通過 build + test |
-| 文件同步 | 改了程式碼就更新所有引用點 |
-| 驗證 | 實際執行驗證。部署後確認 runtime log 反映新版 code |
-| 完成度 | 不接受 stub、placeholder、「差不多就行」 |
-| 面向國際 | 開源文件英文，內部文件繁體中文 |
+> Example values:
+> - Changed one place → ask about other paths with the same pattern
+> - Added a feature → check docs, tests, and config are in sync
+> - After a fix → ask "does this same issue exist elsewhere?"
 
 ---
 
-## Git 規範
+## Quality Baseline
 
-- **永遠 PR**：走 feature branch → PR → 審核 → 合併
-- **Conventional Commits**：feat / fix / chore / docs / refactor
-- **精確 staging**：只 add 需要的檔案，禁止 `git add -A`
-- **合併後清理**：刪除遠端 branch
-
----
-
-## 決策原則
-
-| 原則 | 說明 |
-|------|------|
-| 使用者體驗 > 技術純淨度 | 做 composite tool 而非讓 AI 自己 chain |
-| 先給判斷，不列選項 | 推薦一個方案並說明理由 |
-| 務實取捨 | 早期階段直接 breaking change |
-| 不繞開問題 | 先查確認是否真的不支援 |
-| 設計決策留痕 | 記錄到 CLAUDE.md 或 ADR |
+| Dimension | Standard |
+|---|---|
+| Build | Every change must pass build + test |
+| Doc sync | Code change → update all reference points |
+| Verification | Verify with actual execution; confirm runtime reflects the new code after deploy |
+| Completeness | No stubs, placeholders, or "good enough for now" |
+| Audience | _(e.g., open-source docs in English, internal docs in preferred language)_ |
 
 ---
 
-## 工作流
+## Git Conventions
 
-| 面向 | 偏好 |
-|------|------|
-| 任務拆解 | TaskCreate 列完整清單 |
-| 平行化 | 獨立任務必須平行 |
-| 工具選擇 | 有專用工具就用專用工具 |
-| 收工標準 | 一輪做完再掃一輪 |
-| 方案驗證 | 先 fact-check 假設再動手 |
-| 部署確認 | runtime log 確認新版生效 |
+> Fill in or adjust to match the project's actual conventions.
+
+- **Always use PRs**: feature branch → PR → review → merge
+- **Conventional commits**: `feat` / `fix` / `chore` / `docs` / `refactor`
+- **Precise staging**: only add the files needed; avoid `git add -A`
+- **Post-merge cleanup**: delete remote branch after merge
+
+---
+
+## Decision Principles
+
+| Principle | Detail |
+|---|---|
+| UX > technical purity | _(e.g., build a composite tool rather than expecting AI to chain primitives)_ |
+| Recommend, don't list options | Give one recommendation with reasoning; don't present a menu |
+| Pragmatic trade-offs | _(e.g., in early stages, prefer breaking changes over backwards-compat complexity)_ |
+| Verify before assuming unsupported | Check first whether something is actually unsupported |
+| Leave a decision trail | Record key decisions in CLAUDE.md or an ADR |
+
+---
+
+## Workflow
+
+| Dimension | Preference |
+|---|---|
+| Task breakdown | _(e.g., list all subtasks before starting)_ |
+| Parallelization | Independent tasks must run concurrently |
+| Tool selection | If a dedicated tool exists, use it |
+| Done criteria | _(e.g., complete a full pass, then review once more)_ |
+| Plan validation | Fact-check assumptions before executing |
+| Deploy confirmation | Verify runtime log reflects new code after deployment |
