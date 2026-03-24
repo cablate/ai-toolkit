@@ -34,7 +34,7 @@ ai-toolkit/
 
 ## Dispatch Agents
 
-When Claude Code spawns subagents (via the Agent tool or `/thorough`), prompt quality determines output quality. Dispatch agents are **SOP-style prompts** — step-based workflows with hard thresholds, classification heuristics, and structured output formats. No role definitions, no concept explanations.
+When `/thorough` dispatches parallel subagents, prompt quality determines output quality. Dispatch agents are **SOP-style prompts** designed primarily for this scenario — step-based workflows with hard thresholds, classification heuristics, and structured output formats. They also improve quality whenever Claude Code spawns subagents via the Agent tool in general.
 
 | Agent | Model | Modes | When dispatched |
 |-------|-------|-------|-----------------|
@@ -45,8 +45,6 @@ When Claude Code spawns subagents (via the Agent tool or `/thorough`), prompt qu
 Each agent auto-detects its mode from dispatch context. One agent, multiple workflows.
 
 ### Design Principles
-
-These prompts follow a strict SOP pattern (inspired by [gstack](https://github.com/garrytan/gstack)):
 
 1. **Zero concept explanation** — All operational instructions. Claude already knows what CQRS is.
 2. **Step-based SOP** — "Do X, then Y, if Z threshold → action." Not "You are an expert at..."
@@ -96,84 +94,6 @@ Cost and context monitoring for Claude Code. Token usage (K precision), context 
 // ~/.claude/settings.json
 { "status_line_command": "powershell -NoProfile -File C:/Users/YOU/.claude/statusline.ps1" }
 ```
-
-## Installation
-
-```bash
-git clone https://github.com/cablate/ai-toolkit.git
-cd ai-toolkit
-```
-
-### Linux / macOS
-
-```bash
-# Skills
-for skill in skills/*/; do
-  name=$(basename "$skill")
-  ln -sf "$(pwd)/$skill" ~/.claude/skills/"$name"
-done
-
-# Dispatch agents
-mkdir -p ~/.claude/agents
-for agent in agents/dispatch/*.md; do
-  ln -sf "$(pwd)/$agent" ~/.claude/agents/$(basename "$agent")
-done
-
-# Interactive agents (pick what you need)
-for agent in agents/interactive/*; do
-  ln -sf "$(pwd)/$agent" ~/.claude/agents/$(basename "$agent")
-done
-
-# Statusline
-cp statusline/statusline.ps1 ~/.claude/
-```
-
-### Windows (PowerShell as Admin)
-
-```powershell
-# Skills
-Get-ChildItem -Directory skills | ForEach-Object {
-  New-Item -ItemType SymbolicLink -Force `
-    -Path "$env:USERPROFILE\.claude\skills\$($_.Name)" `
-    -Target "$PWD\skills\$($_.Name)"
-}
-
-# Dispatch agents
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\agents"
-Get-ChildItem agents\dispatch\*.md | ForEach-Object {
-  New-Item -ItemType SymbolicLink -Force `
-    -Path "$env:USERPROFILE\.claude\agents\$($_.Name)" `
-    -Target "$PWD\agents\dispatch\$($_.Name)"
-}
-
-# Interactive agents (pick what you need)
-Get-ChildItem agents\interactive\* | ForEach-Object {
-  New-Item -ItemType SymbolicLink -Force `
-    -Path "$env:USERPROFILE\.claude\agents\$($_.Name)" `
-    -Target "$PWD\agents\interactive\$($_.Name)"
-}
-
-# Statusline
-Copy-Item statusline\statusline.ps1 ~\.claude\
-```
-
-### Staying in sync
-
-Symlinks: just `git pull`. Copied: re-run the copy commands after pulling.
-
-## Philosophy
-
-**The AI is an owner, not an assistant.**
-
-1. **AI agents quit too early.** `/thorough` fixes this — pressure escalation, forced retries, no escape hatches.
-2. **Subagent quality is unreliable.** Dispatch agents fix this — SOP prompts with hard rules, not vague role descriptions.
-3. **Session continuity breaks by design.** `/handoff` fixes this — structured context compression.
-4. **You're flying blind on costs.** The statusline fixes this — real-time token and context monitoring.
-5. **Project docs rot.** `/project-docs` + `doc-sync` fix this — standard structure and automated staleness detection.
-
-## Contributing
-
-Issues and PRs welcome. Real-world tested, concrete behavior change, no hand-waving.
 
 ## License
 
