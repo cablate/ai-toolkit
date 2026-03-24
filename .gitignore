@@ -16,3 +16,5 @@ mcp-servers.json
 
 # Serena
 .serena/
+__pycache__/
+*.pyc
