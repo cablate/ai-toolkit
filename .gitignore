@@ -13,3 +13,6 @@ desktop.ini
 # Node (in case of future tooling)
 node_modules/
 mcp-servers.json
+
+# Serena
+.serena/
