@@ -14,10 +14,12 @@ A batteries-included working environment for [Claude Code](https://docs.anthropi
 ai-toolkit/
 ├── agents/
 │   ├── dispatch/          # SOP agents for subagent quality
-│   │   ├── analyst.md     # Architecture / Planning / Audit
-│   │   ├── reviewer.md    # Code review / Dead code cleanup
-│   │   └── doc-sync.md    # Doc init / Doc sync
-│   └── interactive/       # 15 standalone agents
+│   │   ├── analyst.md      # Architecture / Planning / Audit
+│   │   ├── investigator.md # Search / Explore / Debug / External research
+│   │   ├── builder.md      # Code implementation / Testing
+│   │   ├── reviewer.md     # Code review / Dead code cleanup
+│   │   └── doc-sync.md     # Doc init / Doc sync
+│   └── interactive/       # 14 standalone agents
 │       ├── agent-factory.md
 │       ├── consultation-prep.md
 │       ├── cinematic-writing-agent.txt
@@ -39,6 +41,8 @@ When `/thorough` dispatches parallel subagents, prompt quality determines output
 | Agent | Model | Modes | When dispatched |
 |-------|-------|-------|-----------------|
 | [`analyst`](agents/dispatch/analyst.md) | opus | Architecture / Planning / Audit | "design this", "plan the implementation", "audit codebase health" |
+| [`investigator`](agents/dispatch/investigator.md) | sonnet | Search / Explore / Debug / External | "find all usages of X", "how does this work", "why does this fail" |
+| [`builder`](agents/dispatch/builder.md) | sonnet | Create / Modify / Test | "implement this", "modify the handler", "write tests for X" |
 | [`reviewer`](agents/dispatch/reviewer.md) | sonnet | Review / Cleanup | "review this code", "find dead code", "clean up unused exports" |
 | [`doc-sync`](agents/dispatch/doc-sync.md) | sonnet | Init / Sync | "set up project docs", "sync docs after changes" |
 
@@ -68,7 +72,6 @@ Standalone agents for specific tasks. Drop into `~/.claude/agents/` and invoke d
 | [`user-value-prd-reviewer`](agents/interactive/user-value-prd-reviewer.md) | PRD review from user value lens |
 | [`CodeMender`](agents/interactive/CodeMender.md) | Code repair |
 | [`code-review-agent-v2`](agents/interactive/code-review-agent-v2.md) | Code review |
-| [`development-agent`](agents/interactive/development-agent.md) | Development workflow |
 | [`planning-agent`](agents/interactive/planning-agent.md) | Project planning |
 | [`security-helper`](agents/interactive/security-helper.md) | Security analysis |
 | [`ai-quick-start-record-agent`](agents/interactive/ai-quick-start-record-agent.md) | Quick-start documentation |

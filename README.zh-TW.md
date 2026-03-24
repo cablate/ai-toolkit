@@ -14,10 +14,12 @@
 ai-toolkit/
 ├── agents/
 │   ├── dispatch/          # SOP 式 agent，提升 subagent 品質
-│   │   ├── analyst.md     # 架構設計 / 實作規劃 / 健康稽核
-│   │   ├── reviewer.md    # Code review / 死碼清理
-│   │   └── doc-sync.md    # 文件初始化 / 文件同步
-│   └── interactive/       # 15 個獨立互動式 agent
+│   │   ├── analyst.md      # 架構設計 / 實作規劃 / 健康稽核
+│   │   ├── investigator.md # 搜尋 / 探索 / 除錯 / 外部調查
+│   │   ├── builder.md      # 程式碼實作 / 測試
+│   │   ├── reviewer.md     # Code review / 死碼清理
+│   │   └── doc-sync.md     # 文件初始化 / 文件同步
+│   └── interactive/       # 14 個獨立互動式 agent
 │       ├── agent-factory.md
 │       ├── consultation-prep.md
 │       ├── cinematic-writing-agent.txt
@@ -39,6 +41,8 @@ ai-toolkit/
 | Agent | 模型 | 模式 | 分派時機 |
 |-------|------|------|---------|
 | [`analyst`](agents/dispatch/analyst.md) | opus | 架構 / 規劃 / 稽核 | 「設計這個」「規劃實作」「稽核 codebase」 |
+| [`investigator`](agents/dispatch/investigator.md) | sonnet | 搜尋 / 探索 / 除錯 / 外部 | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
+| [`builder`](agents/dispatch/builder.md) | sonnet | 建立 / 修改 / 測試 | 「實作這個」「改 handler」「幫 X 寫測試」 |
 | [`reviewer`](agents/dispatch/reviewer.md) | sonnet | Review / 清理 | 「review 這段 code」「找死碼」「清理 unused exports」 |
 | [`doc-sync`](agents/dispatch/doc-sync.md) | sonnet | 初始化 / 同步 | 「建立專案文件」「code 改了同步文件」 |
 
@@ -68,7 +72,6 @@ ai-toolkit/
 | [`user-value-prd-reviewer`](agents/interactive/user-value-prd-reviewer.md) | 從使用者價值角度審查 PRD |
 | [`CodeMender`](agents/interactive/CodeMender.md) | 程式碼修復 |
 | [`code-review-agent-v2`](agents/interactive/code-review-agent-v2.md) | Code review |
-| [`development-agent`](agents/interactive/development-agent.md) | 開發工作流 |
 | [`planning-agent`](agents/interactive/planning-agent.md) | 專案規劃 |
 | [`security-helper`](agents/interactive/security-helper.md) | 安全分析 |
 | [`ai-quick-start-record-agent`](agents/interactive/ai-quick-start-record-agent.md) | 快速上手文件產出 |

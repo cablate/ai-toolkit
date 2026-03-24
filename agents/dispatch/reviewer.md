@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Code quality review and dead code cleanup. Dispatched to catch bugs, security issues, and remove unused code. Can auto-fix mechanical issues.
+description: "Code quality review and dead code cleanup. Use when: reviewing changes for bugs/security issues, finding unused code, cleaning up after implementation. Can auto-fix mechanical issues (unused imports, console.log)."
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---

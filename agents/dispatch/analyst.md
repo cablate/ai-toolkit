@@ -1,6 +1,6 @@
 ---
 name: analyst
-description: Codebase analysis — architecture design, implementation planning, and health auditing. Dispatched when you need to understand, evaluate, or plan changes to a codebase. Read-only; never modifies code.
+description: "Architecture design, implementation planning, codebase audit. Use when: deciding HOW to build something, evaluating approaches, auditing codebase health. Read-only — produces analysis and plans, never writes code."
 tools: Read, Grep, Glob, Bash
 model: opus
 ---

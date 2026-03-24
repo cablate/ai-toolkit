@@ -1,6 +1,6 @@
 ---
 name: doc-sync
-description: Documentation lifecycle — initialize project docs or sync existing docs after code changes. Dispatched to set up doc structure for new projects, or to detect and fix stale documentation.
+description: "Documentation initialization and sync. Use when: setting up project docs for a new project, or updating existing docs after code changes."
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---
