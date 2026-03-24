@@ -21,9 +21,6 @@ ai-toolkit/
 │   │   └── doc-sync.md     # Doc init / Doc sync
 │   └── interactive/
 │       └── agent-factory.md  # Design and generate new agents
-├── evals/                   # Agent dispatch eval system
-│   ├── scripts/             # Eval runner, optimizer, reporter
-│   └── eval-sets/           # Default eval sets
 ├── skills/
 │   ├── handoff/           # Session handoff
 │   ├── thorough/          # Relentless delivery mode
