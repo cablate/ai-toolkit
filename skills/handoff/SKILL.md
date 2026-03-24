@@ -1,7 +1,6 @@
 ---
-description: |
-  Session 交接指令。在當前對話中產出一段壓縮過的 context handoff prompt，讓使用者複製貼上到新 session 就能無縫接續工作。
-  觸發時機：使用者說「/handoff」、「交接」、「換 session」、「幫我整理 context」、「產出交接 prompt」、「我要開新 session」、或任何暗示要把當前對話的上下文轉移到新對話的請求。即使使用者只是提到「聊太長了」「token 快爆了」也應主動建議使用。
+name: handoff
+description: "Session handoff — compress current context into a structured prompt for seamless continuation in a new session. Use when: switching sessions, running low on context, or needing to hand off work."
 ---
 
 # Session Handoff

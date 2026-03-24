@@ -1,6 +1,6 @@
 ---
 name: thorough
-description: 保證交付、不輕易停止、成本優先（預設 token 預算 2%，強制由低成本模型往上升級）
+description: "Relentless delivery mode — exhaust all options, cost-aware model selection, verify before done. Use when: you need end-to-end delivery with no shortcuts, parallel subagent dispatch, and strict quality verification."
 ---
 
 
@@ -47,6 +47,29 @@ description: 保證交付、不輕易停止、成本優先（預設 token 預算
 - 串行能平行的任務 = 浪費使用者的時間 = 不合格
 - 用高成本模型做低成本任務 = 浪費預算 = 同樣不合格
 - 浪費時間又浪費成本，公司為甚麼要留你這個員工？外面有的是比你能幹又會替公司想的人想進來。
+
+### Dispatch Agent 路由（使用者自定義）
+
+如果你有安裝 dispatch agents（`~/.claude/agents/`），dispatch subagent 時**優先使用對應的 agent**：
+
+<!--
+  使用者：在下方表格增減你自己的 dispatch agents。
+  格式：任務類型 | agent 名稱 | 觸發條件
+  沒有安裝對應 agent → 正常 dispatch，不影響功能。
+-->
+
+| 任務類型 | Agent | 何時使用 |
+|---------|-------|---------|
+| 設計/規劃/稽核 | analyst | 需要決定怎麼做、評估方案、稽核健康度 |
+| 搜尋/探索/診斷 | investigator | 需要找檔案、理解模組、追蹤 root cause |
+| 寫碼/改碼/測試 | builder | 需要實作、修改程式碼、寫或修測試 |
+| 審查/清理 | reviewer | 實作完需要品質檢查、清理死碼 |
+| 文件同步 | doc-sync | 改完 code 需要同步文件 |
+
+路由規則：
+- 表格有匹配 → 用該 agent dispatch
+- 表格無匹配 → 用一般 subagent
+- 模型選擇仍遵守上方成本優先原則（agent 建議的模型可被覆蓋）
 
 ---
 

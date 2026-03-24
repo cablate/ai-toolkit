@@ -1,8 +1,6 @@
 ---
 name: project-docs
-description: |
-  Project documentation management. Use when initializing docs for a new project, recording architecture decisions (ADRs), writing feature stories, or maintaining project knowledge bases.
-  Provides a standard structure so you can resume context on any project within 5 minutes.
+description: "Project documentation structure — standard proj-[name]/ layout with ADRs, stories, and operations guides. Use when: initializing docs for a new project, recording architecture decisions, or maintaining project knowledge bases."
 ---
 
 # Project Documentation

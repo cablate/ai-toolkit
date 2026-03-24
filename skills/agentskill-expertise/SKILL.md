@@ -1,6 +1,6 @@
 ---
 name: agentskill-expertise
-description: Agent Skill 的完整認知體系與設計知識庫。載入後具備 Agent Skill 的全維度理解——底層機制、設計哲學、架構模式、常見誤區。使用時機：設計新 Skill 時作為設計依據；調整現有 Skill 時判斷改動方向是否正確；Review Skill 設計品質時作為評估標準；討論 Skill 相關議題時確保認知準確；需要判斷某個做法應該用 Skill 還是其他方式實現時。主動更新時機：發現新的設計模式或反模式時更新 references/design-patterns.md；技術機制有新發現時更新「底層機制」章節；實際設計 Skill 過程中產生新洞察時更新對應章節。
+description: "Agent Skill design knowledge base — mechanisms, philosophy, patterns, pitfalls. Use when: designing new skills, reviewing skill quality, or deciding whether something should be a skill."
 version: 202603
 context: fork
 ---

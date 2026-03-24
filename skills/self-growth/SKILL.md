@@ -1,9 +1,6 @@
 ---
 name: self-growth
-description: |
-  Continuous learning framework for AI agents — learn from work, organize knowledge,
-  build feedback loops. Prevents knowledge from evaporating between sessions.
-  Adapted from a production multi-agent system (ClaudeCab).
+description: "Continuous learning framework — learn from work, organize knowledge, build feedback loops. Use when: recording lessons, organizing knowledge, or setting up learning systems that persist across sessions."
 ---
 
 # Self-Growth Framework

@@ -1,8 +1,6 @@
 ---
-description: |
-  使用者的 AI 協作風格與溝通偏好。理解這位使用者如何與 AI 協作、什麼會觸發不滿、什麼樣的互動讓他高效。
-  所有與使用者互動的場景都應參考此 Skill，尤其是：判斷「該問還是該做」、決定回覆的詳略程度、選擇工作節奏。
-  主動更新時機：(1) /insights 產出新報告後萃取模式 (2) Session 中發現新摩擦模式時自省並提議更新 (3) 規則累積過多時主動合併為原則。
+name: collaboration-style
+description: "AI-human collaboration norms — friction cases, coding style preferences, behavioral guidelines. Use when: calibrating communication style, deciding when to ask vs act, or adjusting response detail level."
 ---
 
 # 使用者協作風格
