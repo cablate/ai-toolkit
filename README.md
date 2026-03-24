@@ -6,7 +6,7 @@
   <a href="README.zh-TW.md">繁體中文</a>
 </p>
 
-A batteries-included working environment for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Skills, dispatch agents, interactive agents, and statusline — all extracted from daily production use.
+A batteries-included working environment for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Dispatch agents, skills, and statusline — all extracted from daily production use.
 
 ## What's Inside
 
@@ -19,11 +19,8 @@ ai-toolkit/
 │   │   ├── builder.md      # Code implementation / Testing
 │   │   ├── reviewer.md     # Code review / Dead code cleanup
 │   │   └── doc-sync.md     # Doc init / Doc sync
-│   └── interactive/       # 14 standalone agents
-│       ├── agent-factory.md
-│       ├── consultation-prep.md
-│       ├── cinematic-writing-agent.txt
-│       └── ... (15 total)
+│   └── interactive/
+│       └── agent-factory.md  # Design and generate new agents
 ├── skills/
 │   ├── handoff/           # Session handoff
 │   ├── thorough/          # Relentless delivery mode
@@ -58,23 +55,9 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 
 ## Interactive Agents
 
-Standalone agents for specific tasks. Drop into `~/.claude/agents/` and invoke directly.
-
 | Agent | Description |
 |-------|-------------|
-| [`agent-factory`](agents/interactive/agent-factory.md) | Design and generate new agents |
-| [`consultation-prep`](agents/interactive/consultation-prep.md) | Prepare for consulting sessions |
-| [`srt-subtitle-editor`](agents/interactive/srt-subtitle-editor.md) | Edit SRT subtitle files |
-| [`cinematic-writing-agent`](agents/interactive/cinematic-writing-agent.txt) | Cinematic narrative writing |
-| [`design-pattern-coach`](agents/interactive/design-pattern-coach.md) | Design pattern guidance |
-| [`reading-agent`](agents/interactive/reading-agent.md) | Structured reading assistance |
-| [`uiux-designer`](agents/interactive/uiux-designer.md) | UI/UX design |
-| [`user-value-prd-reviewer`](agents/interactive/user-value-prd-reviewer.md) | PRD review from user value lens |
-| [`CodeMender`](agents/interactive/CodeMender.md) | Code repair |
-| [`code-review-agent-v2`](agents/interactive/code-review-agent-v2.md) | Code review |
-| [`planning-agent`](agents/interactive/planning-agent.md) | Project planning |
-| [`security-helper`](agents/interactive/security-helper.md) | Security analysis |
-| [`ai-quick-start-record-agent`](agents/interactive/ai-quick-start-record-agent.md) | Quick-start documentation |
+| [`agent-factory`](agents/interactive/agent-factory.md) | Design and generate new agents — research best practices, analyze requirements, output production-ready agent prompts |
 
 ## Skills
 

@@ -6,7 +6,7 @@
   <a href="README.md">English</a>
 </p>
 
-一整套 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 工作環境。Skills、Dispatch Agents、互動式 Agents、Statusline——全部從每天跟 AI agent 協作的真實工作流中提煉。
+一整套 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 工作環境。Dispatch Agents、Skills、Statusline——全部從每天跟 AI agent 協作的真實工作流中提煉。
 
 ## 內容總覽
 
@@ -19,11 +19,8 @@ ai-toolkit/
 │   │   ├── builder.md      # 程式碼實作 / 測試
 │   │   ├── reviewer.md     # Code review / 死碼清理
 │   │   └── doc-sync.md     # 文件初始化 / 文件同步
-│   └── interactive/       # 14 個獨立互動式 agent
-│       ├── agent-factory.md
-│       ├── consultation-prep.md
-│       ├── cinematic-writing-agent.txt
-│       └── ... (共 15 個)
+│   └── interactive/
+│       └── agent-factory.md  # 設計並產生新 agent
 ├── skills/
 │   ├── handoff/           # Session 交接
 │   ├── thorough/          # 極致交付模式
@@ -58,23 +55,9 @@ ai-toolkit/
 
 ## 互動式 Agents
 
-獨立功能的 agent，放進 `~/.claude/agents/` 直接使用。
-
 | Agent | 說明 |
 |-------|------|
-| [`agent-factory`](agents/interactive/agent-factory.md) | 設計並產生新 agent |
-| [`consultation-prep`](agents/interactive/consultation-prep.md) | 諮詢準備 |
-| [`srt-subtitle-editor`](agents/interactive/srt-subtitle-editor.md) | SRT 字幕編輯 |
-| [`cinematic-writing-agent`](agents/interactive/cinematic-writing-agent.txt) | 電影感敘事寫作 |
-| [`design-pattern-coach`](agents/interactive/design-pattern-coach.md) | 設計模式指導 |
-| [`reading-agent`](agents/interactive/reading-agent.md) | 結構化閱讀輔助 |
-| [`uiux-designer`](agents/interactive/uiux-designer.md) | UI/UX 設計 |
-| [`user-value-prd-reviewer`](agents/interactive/user-value-prd-reviewer.md) | 從使用者價值角度審查 PRD |
-| [`CodeMender`](agents/interactive/CodeMender.md) | 程式碼修復 |
-| [`code-review-agent-v2`](agents/interactive/code-review-agent-v2.md) | Code review |
-| [`planning-agent`](agents/interactive/planning-agent.md) | 專案規劃 |
-| [`security-helper`](agents/interactive/security-helper.md) | 安全分析 |
-| [`ai-quick-start-record-agent`](agents/interactive/ai-quick-start-record-agent.md) | 快速上手文件產出 |
+| [`agent-factory`](agents/interactive/agent-factory.md) | 設計並產生新 agent——調研最佳實踐、分析需求、輸出可用的 agent prompt |
 
 ## Skills
 
