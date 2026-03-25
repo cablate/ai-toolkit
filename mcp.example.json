@@ -21,24 +21,6 @@
         "EMBEDDING_DIMENSIONS": "1024",
         "MEMORY_DB_PATH": "./path/to/your/.memory-db"
       }
-    },
-
-    "mcp-image": {
-      "command": "npx",
-      "args": ["-y", "mcp-image"],
-      "env": {
-        "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY"
-      }
-    },
-
-    "excalidraw": {
-      "command": "npx",
-      "args": ["-y", "@nicepkg/mcp-server-excalidraw"]
-    },
-
-    "chrome-devtools": {
-      "command": "npx",
-      "args": ["chrome-devtools-mcp@latest", "--autoConnect"]
     }
 
   }
