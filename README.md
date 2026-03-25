@@ -65,7 +65,34 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 
 ## Statusline
 
-Cost and context monitoring for Claude Code. Token usage (K precision), context bar, idle time, plan usage rates.
+Cost and context monitoring for Claude Code. Two-line display with context alerts and plan usage tracking.
+
+```
+ Normal (< 60% context):
+┌──────────────────────────────────────────────────────────────────┐
+│ Claude Opus 4  | [=======--------------] 45.2K/200.0K 22.6%    │
+│ 5h: 12.3% (4h 22m) | 7d: 8.1% (6d 3h)                        │
+└──────────────────────────────────────────────────────────────────┘
+
+ Warning (>= 60% context):
+┌──────────────────────────────────────────────────────────────────┐
+│ Claude Sonnet 4 | concise | [============--------] 130.5K/200.0K 65.3%  /handoff soon │
+│ 5h: 45.0% (2h 10m) | 7d: 22.4% (5d 1h)                       │
+└──────────────────────────────────────────────────────────────────┘
+
+ Critical (>= 80% context):
+┌──────────────────────────────────────────────────────────────────┐
+│ Claude Opus 4  | [==================--] 310.0K/200.0K 95.0%  !! HANDOFF NOW !! │
+│ 5h: 78.2% (1h 05m) | 7d: 51.3% (3d 12h)                      │
+│ !! DO NOT close/resume -- use /handoff first, or waste 6%+ of 5h tokens !! │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**Line 1** — Model name, output style (if not default), context progress bar with K-precision token counts, usage %, and alerts at 150K/200K/300K thresholds.
+
+**Line 2** — 5-hour and 7-day plan usage rates with reset countdowns. Fetched from Claude API (cached 5min) or inline `rate_limits` (v2.1.80+).
+
+**Line 3** — Appears at 250K+ tokens. Hard warning against closing/resuming without handoff.
 
 > [`statusline/statusline.ps1`](statusline/statusline.ps1)
 
