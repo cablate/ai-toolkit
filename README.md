@@ -29,17 +29,18 @@ ai-toolkit/
 └── statusline/              # Cost & context monitoring
 ```
 
-## Dispatch Agents
+## Agents
 
-When `/thorough` dispatches parallel subagents, prompt quality determines output quality. Dispatch agents are **SOP-style prompts** designed primarily for this scenario — step-based workflows with hard thresholds, classification heuristics, and structured output formats. They also improve quality whenever Claude Code spawns subagents via the Agent tool in general.
+SOP-style prompts for Claude Code's Agent tool. When `/thorough` dispatches parallel subagents, prompt quality determines output quality — these agents provide step-based workflows with hard thresholds, classification heuristics, and structured output formats.
 
-| Agent | Model | Modes | When dispatched |
-|-------|-------|-------|-----------------|
-| [`analyst`](agents/analyst.md) | opus | Architecture / Planning / Audit | "design this", "plan the implementation", "audit codebase health" |
-| [`investigator`](agents/investigator.md) | sonnet | Search / Explore / Debug / External | "find all usages of X", "how does this work", "why does this fail" |
-| [`builder`](agents/builder.md) | sonnet | Create / Modify / Test | "implement this", "modify the handler", "write tests for X" |
-| [`reviewer`](agents/reviewer.md) | sonnet | Review / Cleanup | "review this code", "find dead code", "clean up unused exports" |
-| [`doc-sync`](agents/doc-sync.md) | sonnet | Init / Sync | "set up project docs", "sync docs after changes" |
+| Agent | Model | When to use |
+|-------|-------|-------------|
+| [`analyst`](agents/analyst.md) | opus | "design this", "plan the implementation", "audit codebase health" |
+| [`investigator`](agents/investigator.md) | sonnet | "find all usages of X", "how does this work", "why does this fail" |
+| [`builder`](agents/builder.md) | sonnet | "implement this", "modify the handler", "write tests for X" |
+| [`reviewer`](agents/reviewer.md) | sonnet | "review this code", "find dead code", "clean up unused exports" |
+| [`doc-sync`](agents/doc-sync.md) | sonnet | "set up project docs", "sync docs after changes" |
+| [`agent-factory`](agents/agent-factory.md) | opus | "create a new agent", "improve this agent's prompt" |
 
 Each agent auto-detects its mode from dispatch context. One agent, multiple workflows.
 
@@ -50,12 +51,6 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 3. **Hard rules as threshold + trigger** — `>50 lines → flag`, `>4 nesting levels → flag`. Not "keep functions small."
 4. **Classification heuristics** — `AUTO-FIX / ASK / CRITICAL` with concrete criteria. Not checklists.
 5. **Structured output** — Every agent ends with a report template. Consistent, parseable.
-
-## Interactive Agents
-
-| Agent | Description |
-|-------|-------------|
-| [`agent-factory`](agents/agent-factory.md) | Design and generate new agents — research best practices, analyze requirements, output production-ready agent prompts |
 
 ## Skills
 

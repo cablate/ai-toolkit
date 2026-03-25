@@ -29,17 +29,18 @@ ai-toolkit/
 └── statusline/              # 成本與 context 監控
 ```
 
-## Dispatch Agents
+## Agents
 
-`/thorough` 分派平行 subagent 時，prompt 品質決定產出品質。Dispatch agents 是為此場景設計的 **SOP 式 prompt** — 基於步驟的工作流程，附帶明確的閾值規則、分類啟發式和結構化輸出格式。當 Claude Code 透過 Agent tool 產生 subagent 時也同樣適用。
+Claude Code Agent tool 的 SOP 式 prompt。當 `/thorough` 分派平行 subagent 時，prompt 品質決定產出品質——這些 agent 提供基於步驟的工作流程，附帶明確的閾值規則、分類啟發式和結構化輸出格式。
 
-| Agent | 模型 | 模式 | 分派時機 |
-|-------|------|------|---------|
-| [`analyst`](agents/analyst.md) | opus | 架構 / 規劃 / 稽核 | 「設計這個」「規劃實作」「稽核 codebase」 |
-| [`investigator`](agents/investigator.md) | sonnet | 搜尋 / 探索 / 除錯 / 外部 | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
-| [`builder`](agents/builder.md) | sonnet | 建立 / 修改 / 測試 | 「實作這個」「改 handler」「幫 X 寫測試」 |
-| [`reviewer`](agents/reviewer.md) | sonnet | Review / 清理 | 「review 這段 code」「找死碼」「清理 unused exports」 |
-| [`doc-sync`](agents/doc-sync.md) | sonnet | 初始化 / 同步 | 「建立專案文件」「code 改了同步文件」 |
+| Agent | 模型 | 使用時機 |
+|-------|------|---------|
+| [`analyst`](agents/analyst.md) | opus | 「設計這個」「規劃實作」「稽核 codebase」 |
+| [`investigator`](agents/investigator.md) | sonnet | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
+| [`builder`](agents/builder.md) | sonnet | 「實作這個」「改 handler」「幫 X 寫測試」 |
+| [`reviewer`](agents/reviewer.md) | sonnet | 「review 這段 code」「找死碼」「清理 unused exports」 |
+| [`doc-sync`](agents/doc-sync.md) | sonnet | 「建立專案文件」「code 改了同步文件」 |
+| [`agent-factory`](agents/agent-factory.md) | opus | 「建新 agent」「改善這個 agent 的 prompt」 |
 
 每個 agent 根據分派 context 自動判斷模式。一個 agent，多個工作流程。
 
@@ -50,12 +51,6 @@ ai-toolkit/
 3. **硬規則 = 閾值 + 觸發** — `>50 行 → flag`、`>4 層巢狀 → flag`。不是「保持函式簡短」。
 4. **分類啟發式** — `AUTO-FIX / ASK / CRITICAL` 附帶具體判斷標準。不是勾選清單。
 5. **結構化輸出** — 每個 agent 都有 report 模板。一致、可解析。
-
-## 互動式 Agents
-
-| Agent | 說明 |
-|-------|------|
-| [`agent-factory`](agents/agent-factory.md) | 設計並產生新 agent——調研最佳實踐、分析需求、輸出可用的 agent prompt |
 
 ## Skills
 
