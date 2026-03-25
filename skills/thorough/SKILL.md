@@ -1,6 +1,6 @@
 ---
 name: thorough
-description: "Relentless delivery mode — exhaust all options, cost-aware model selection, verify before done. Use when: you need end-to-end delivery with no shortcuts, parallel subagent dispatch, and strict quality verification."
+description: "Relentless delivery mode for complex, multi-step tasks. Use when: implementing features that touch multiple files, debugging issues with unclear root cause, research or investigation requiring multiple angles, planning or architecture decisions with trade-offs, any task where cutting corners would produce poor results. Activates parallel subagent dispatch and strict verification."
 ---
 
 
