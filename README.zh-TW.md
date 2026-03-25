@@ -22,10 +22,12 @@ ai-toolkit/
 ├── skills/                  # Skills（symlink 到 ~/.claude/skills/）
 │   ├── handoff/             # Session 交接
 │   ├── thorough/            # 極致交付模式
+│   ├── vector-memory/       # 持久化向量記憶使用指南
 │   ├── project-docs/        # 專案文件結構模板
 │   ├── agentskill-expertise/ # Skill 設計知識庫
 │   ├── collaboration-style/ # AI-人類協作框架
 │   └── self-growth/         # 持續學習框架
+├── mcp.example.json         # MCP server 設定範本
 └── statusline/              # 成本與 context 監控
 ```
 
@@ -58,10 +60,25 @@ Claude Code Agent tool 的 SOP 式 prompt。當 `/thorough` 分派平行 subagen
 |-------|------|
 | [`/handoff`](skills/handoff/SKILL.md) | Session 交接——壓縮 context 成結構化 prompt，無縫接續新 session |
 | [`/thorough`](skills/thorough/SKILL.md) | 極致交付模式——窮盡一切方案、成本優先選模型、驗證完成才收工 |
+| [`/vector-memory`](skills/vector-memory/SKILL.md) | 持久化向量記憶（LanceDB）——跨 session 儲存事實、決策、教訓 |
 | [`/project-docs`](skills/project-docs/SKILL.md) | 專案文件結構——標準 `proj-[name]/` 佈局，含 ADR、功能故事、操作指南 |
 | [`/agentskill-expertise`](skills/agentskill-expertise/SKILL.md) | Agent Skill 設計知識庫——底層機制、設計哲學、架構模式、常見誤區 |
 | [`/collaboration-style`](skills/collaboration-style/skill.md) | AI-人類協作規範——摩擦案例、程式風格偏好、行為準則 |
 | [`/self-growth`](skills/self-growth/SKILL.md) | 持續學習框架——從工作中學習、組織知識、建立回饋迴路 |
+
+## MCP Servers
+
+本 toolkit 使用的 MCP server 設定範本。
+
+> [`mcp.example.json`](mcp.example.json) — 複製到專案目錄改名為 `.mcp.json`，填入你的 API key。
+
+| Server | 用途 |
+|--------|------|
+| [`@cablate/memory-lancedb-mcp`](https://www.npmjs.com/package/@cablate/memory-lancedb-mcp) | 持久化向量記憶，支援混合搜尋（語意 + 關鍵字） |
+| [Serena](https://github.com/oraios/serena) | 語意化程式碼智能——symbol 搜尋、引用追蹤、重構 |
+| [mcp-image](https://www.npmjs.com/package/mcp-image) | AI 圖片生成（Gemini） |
+| [chrome-devtools](https://www.npmjs.com/package/chrome-devtools-mcp) | 瀏覽器 DevTools 自動化 |
+| [Excalidraw](https://www.npmjs.com/package/@nicepkg/mcp-server-excalidraw) | 圖表建立與編輯 |
 
 ## Statusline
 

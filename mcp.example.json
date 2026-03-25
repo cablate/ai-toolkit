@@ -1,0 +1,45 @@
+{
+  "mcpServers": {
+
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ]
+    },
+
+    "memory": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@cablate/memory-lancedb-mcp"],
+      "env": {
+        "EMBEDDING_API_KEY": "YOUR_DEEPINFRA_API_KEY",
+        "EMBEDDING_MODEL": "Qwen/Qwen3-Embedding-8B",
+        "EMBEDDING_BASE_URL": "https://api.deepinfra.com/v1/openai",
+        "EMBEDDING_DIMENSIONS": "1024",
+        "MEMORY_DB_PATH": "./path/to/your/.memory-db"
+      }
+    },
+
+    "mcp-image": {
+      "command": "npx",
+      "args": ["-y", "mcp-image"],
+      "env": {
+        "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY"
+      }
+    },
+
+    "excalidraw": {
+      "command": "npx",
+      "args": ["-y", "@nicepkg/mcp-server-excalidraw"]
+    },
+
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["chrome-devtools-mcp@latest", "--autoConnect"]
+    }
+
+  }
+}

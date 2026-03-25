@@ -22,10 +22,12 @@ ai-toolkit/
 ├── skills/                  # Skills (symlink to ~/.claude/skills/)
 │   ├── handoff/             # Session handoff
 │   ├── thorough/            # Relentless delivery mode
+│   ├── vector-memory/       # Persistent vector memory usage guide
 │   ├── project-docs/        # Project documentation structure
 │   ├── agentskill-expertise/ # Skill design knowledge base
 │   ├── collaboration-style/ # AI-human collaboration framework
 │   └── self-growth/         # Continuous learning framework
+├── mcp.example.json         # MCP server config template
 └── statusline/              # Cost & context monitoring
 ```
 
@@ -58,10 +60,25 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 |-------|-------------|
 | [`/handoff`](skills/handoff/SKILL.md) | Session handoff — compress context into a structured prompt for seamless continuation |
 | [`/thorough`](skills/thorough/SKILL.md) | Relentless delivery mode — exhaust all options, cost-aware model selection, verify before done |
+| [`/vector-memory`](skills/vector-memory/SKILL.md) | Persistent vector memory via LanceDB — store facts, decisions, lessons across sessions |
 | [`/project-docs`](skills/project-docs/SKILL.md) | Project documentation structure — standard `proj-[name]/` layout with ADRs, stories, and operations guides |
 | [`/agentskill-expertise`](skills/agentskill-expertise/SKILL.md) | Agent Skill design knowledge base — mechanisms, philosophy, patterns, pitfalls |
 | [`/collaboration-style`](skills/collaboration-style/skill.md) | AI-human collaboration norms — friction cases, coding style, behavioral guidelines |
 | [`/self-growth`](skills/self-growth/SKILL.md) | Continuous learning framework — learn from work, organize knowledge, build feedback loops |
+
+## MCP Servers
+
+Example configuration for the MCP servers used in this toolkit.
+
+> [`mcp.example.json`](mcp.example.json) — copy to your project as `.mcp.json` and fill in your API keys.
+
+| Server | What it does |
+|--------|-------------|
+| [`@cablate/memory-lancedb-mcp`](https://www.npmjs.com/package/@cablate/memory-lancedb-mcp) | Persistent vector memory with hybrid search (semantic + keyword) |
+| [Serena](https://github.com/oraios/serena) | Semantic code intelligence — symbol search, references, refactoring |
+| [mcp-image](https://www.npmjs.com/package/mcp-image) | AI image generation via Gemini |
+| [chrome-devtools](https://www.npmjs.com/package/chrome-devtools-mcp) | Browser DevTools automation |
+| [Excalidraw](https://www.npmjs.com/package/@nicepkg/mcp-server-excalidraw) | Diagram creation and editing |
 
 ## Statusline
 
