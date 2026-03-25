@@ -76,9 +76,6 @@ Example configuration for the MCP servers used in this toolkit.
 |--------|-------------|
 | [`@cablate/memory-lancedb-mcp`](https://www.npmjs.com/package/@cablate/memory-lancedb-mcp) | Persistent vector memory with hybrid search (semantic + keyword) |
 | [Serena](https://github.com/oraios/serena) | Semantic code intelligence — symbol search, references, refactoring |
-| [mcp-image](https://www.npmjs.com/package/mcp-image) | AI image generation via Gemini |
-| [chrome-devtools](https://www.npmjs.com/package/chrome-devtools-mcp) | Browser DevTools automation |
-| [Excalidraw](https://www.npmjs.com/package/@nicepkg/mcp-server-excalidraw) | Diagram creation and editing |
 
 ## Statusline
 

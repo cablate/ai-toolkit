@@ -76,9 +76,6 @@ Claude Code Agent tool 的 SOP 式 prompt。當 `/thorough` 分派平行 subagen
 |--------|------|
 | [`@cablate/memory-lancedb-mcp`](https://www.npmjs.com/package/@cablate/memory-lancedb-mcp) | 持久化向量記憶，支援混合搜尋（語意 + 關鍵字） |
 | [Serena](https://github.com/oraios/serena) | 語意化程式碼智能——symbol 搜尋、引用追蹤、重構 |
-| [mcp-image](https://www.npmjs.com/package/mcp-image) | AI 圖片生成（Gemini） |
-| [chrome-devtools](https://www.npmjs.com/package/chrome-devtools-mcp) | 瀏覽器 DevTools 自動化 |
-| [Excalidraw](https://www.npmjs.com/package/@nicepkg/mcp-server-excalidraw) | 圖表建立與編輯 |
 
 ## Statusline
 
