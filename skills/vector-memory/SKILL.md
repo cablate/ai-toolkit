@@ -115,6 +115,21 @@ Why two? Different queries find different layers. "Why did publish fail?" hits t
 | 0.7–0.85 | Important decision or recurring pattern |
 | 0.85–1.0 | Critical — wrong action has serious consequences |
 
+### Confidence-Based Tiering
+
+The Category Reference above gives **default** importance values. Adjust based on how confident the memory is:
+
+| Confidence | Importance | Tier | When to use |
+|------------|------------|------|-------------|
+| Explicitly stated | 0.9 | `core` | User directly said "I want X", team decision, preference confirmed multiple times |
+| Verified in practice | 0.7–0.8 | `working` | Learned from a mistake, technical fact verified by implementation |
+| Exploratory | 0.4–0.5 | `peripheral` | One-time question, hypothesis under discussion, unconfirmed direction |
+
+**Rule of thumb**: How many times has this come up?
+- Mentioned 3+ times → `core`
+- Verified through implementation → `working`
+- Mentioned once, still discussing → `peripheral`
+
 ---
 
 ## Scopes
