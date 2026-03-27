@@ -158,37 +158,12 @@ try {
         $usagePercentage = [Math]::Round([double]$inputData.context_window.used_percentage, 1)
     }
 
-    $cumulativeInput = [long]$inputData.context_window.total_input_tokens
-    $cumulativeOutput = [long]$inputData.context_window.total_output_tokens
-
-    # Get cache tokens from transcript for accurate count
-    $cacheTokens = 0
-    $transcriptInputTokens = 0
-
-    if ($transcriptPath -and (Test-Path $transcriptPath)) {
-        try {
-            $lastLines = Get-Content $transcriptPath -Tail 50
-            [array]::Reverse($lastLines)
-            foreach ($line in $lastLines) {
-                if ($line -match '"usage"') {
-                    try {
-                        $lineData = $line | ConvertFrom-Json -ErrorAction SilentlyContinue
-                        if ($lineData.message.usage) {
-                            $usage = $lineData.message.usage
-                            $cacheTokens = [long]$usage.cache_read_input_tokens + [long]$usage.cache_creation_input_tokens
-                            $transcriptInputTokens = [long]$usage.input_tokens
-                            break
-                        }
-                    } catch { }
-                }
-            }
-        } catch { }
-    }
-
-    if ($cacheTokens -gt 0 -or $transcriptInputTokens -gt 0) {
-        $totalTokens = $transcriptInputTokens + $cacheTokens
-    } else {
-        $totalTokens = $cumulativeInput + $cumulativeOutput
+    # Use current_usage from stdin (accurate current context tokens)
+    $currentUsage = $inputData.context_window.current_usage
+    if ($currentUsage) {
+        $totalTokens = [long]$currentUsage.input_tokens `
+            + [long]$currentUsage.cache_creation_input_tokens `
+            + [long]$currentUsage.cache_read_input_tokens
     }
 
     if ($usagePercentage -eq $null) {
