@@ -47,5 +47,5 @@ Analyzes historical Threads post data using algorithm knowledge from `darkseokin
 
 - [historical-analysis.md](references/historical-analysis.md) — how to extract patterns from post data
 - [prediction-model.md](references/prediction-model.md) — how to predict ceiling and recommend strategy
-- Benchmark data → `darkseoking-mindset/references/darkseoking-all-posts.csv`
+- Benchmark data → `../darkseoking-all-posts.csv`
 - Algorithm knowledge → `darkseoking-mindset` skill
