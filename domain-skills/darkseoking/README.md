@@ -35,22 +35,41 @@ The operations layer. Runs an 8-item pre-publish checklist — each item rated P
 
 #### Example: Optimizer in Action
 
+A marketing consultant's account focuses on SEO and AI tools. Their last post (12 hours ago) about "5 AI writing tools" got 800 likes — well above their usual 200. They now want to post this:
+
 **Draft:**
-> Claude Code is amazing — compact, resume, and several other long-standing issues that people have been reporting on GitHub for ages about burning tokens, all got fixed within two days of the source code leaking!! Anyway the result is good, you can use it with more peace of mind now
+> AI is changing everything about how we do SEO. Here are 3 more tools that will blow your mind and transform your content workflow forever. Trust me, these are game-changers! 🚀🔥
+>
+> Link: bestaitools.xyz/my-affiliate-list
 
 **Checklist result:**
 
 | # | Check | Rating | Reason |
 |---|-------|--------|--------|
-| 1 | First Line | WARN | "is amazing" is low-density; the real hook (source code leak → bugs fixed in 2 days) is buried in the middle |
-| 2 | Semantic Precision | WARN | "burning tokens" and "several versions" are vague — which versions? what cost reduction? |
-| 4 | External Links | PASS | No external links |
-| 5 | Thread Structure | PASS | Single post, content density matches format |
+| 1 | First Line | FAIL | "AI is changing everything" is a textbook AI-typical opener with zero info density. "Blow your mind" and "game-changers" are clickbait filler. |
+| 2 | Semantic Precision | FAIL | Dominated by generic terms ("AI", "SEO", "content workflow"). No domain-specific nouns — which tools? what kind of SEO? Nothing makes the target audience think "this is for me." |
+| 3 | Topic Distance | FAIL | Same topic (AI tools) + same angle (listicle) as the post 12 hours ago. Diversity mechanism (US9336553B2) will penalize same-source density. |
+| 4 | External Links | FAIL | Unknown domain (bestaitools.xyz), likely affiliate link. Low authority + content relevance unclear. |
+| 5 | Thread Structure | WARN | "3 tools" has enough content for threads, but is packed into a single post. Splitting into 1 tool per thread reply would add independent information value per reply. |
+| 6 | Timing | FAIL | Last post was 12 hours ago and is still in active diffusion (800 likes = well above baseline). Posting now competes with yourself (US8402094B2). |
+| 7 | Post-Viral Strategy | FAIL | Last post went semi-viral. Should be engaging with comments on that post, not rushing a follow-up on the same topic. |
 
-**Suggested rewrite:**
-> Claude Code's source code leaked, and within two days compact, resume, and other token-burning bugs that sat in GitHub Issues for multiple versions all got fixed. Coincidence? I don't know, but the result is good — it genuinely feels safer to use now.
+**Result: 1 WARN, 6 FAIL — do not publish.**
 
-The optimizer moved the core hook (source code leak → 2-day fix) to the first line, replaced vague terms with specifics, and kept the conversational tone.
+**Optimizer recommendations:**
+1. **Wait 24-48h.** Let the 800-like post finish its diffusion cycle. Use that time to reply to every comment on it instead.
+2. **Change topic.** If the account covers SEO + AI tools, the next post should lean into SEO (different topic, same niche) rather than another AI tools listicle.
+3. **Kill the affiliate link.** Either remove it entirely (safest) or replace with a high-authority source that directly supports the content.
+4. **Rewrite the opener.** Lead with a specific, counterintuitive finding — not "AI is changing everything."
+
+**Rewritten (after waiting 48h):**
+> I used to mass-produce SEO articles with AI — 50 per week. Rankings went up for 2 months, then every single one dropped out of the top 100. Here's what the data showed was killing them, and the 3-step fix that brought 80% back.
+>
+> [Thread 1] The first signal was... [specific data]
+> [Thread 2] The fix that worked...
+> [Thread 3] What I'd do differently now...
+
+Changed topic (AI content quality, not tools listicle), led with a counterintuitive first-hand result, removed affiliate link, added thread structure for depth.
 
 ---
 
