@@ -1,6 +1,6 @@
 # darkseoking — SEO & Threads Algorithm Skills
 
-Three-layer skill set distilled from [darkseoking](https://www.threads.net/@darkseoking), an SEO practitioner with 10+ years of experience. Every insight is backed by Meta/Google algorithm patents or controlled experiments with real data.
+Three-layer skill set built on the methodology of [@darkseoking](https://www.threads.net/@darkseoking) — an SEO practitioner and Threads creator with 10+ years of hands-on experience, 17k+ followers grown through algorithm-informed content strategy. He spent real money on controlled experiments and reverse-engineered Meta/Google algorithm patents to understand how content distribution actually works. Every insight in these skills is backed by patent filings or tested data — no speculation, no "industry consensus" parroting.
 
 ## Architecture
 
@@ -33,6 +33,27 @@ The operations layer. Runs an 8-item pre-publish checklist — each item rated P
 7. Post-Viral Strategy (only after viral post)
 8. Topic Suggestion (only when asked "what to write")
 
+#### Example: Optimizer in Action
+
+**Draft:**
+> Claude Code is amazing — compact, resume, and several other long-standing issues that people have been reporting on GitHub for ages about burning tokens, all got fixed within two days of the source code leaking!! Anyway the result is good, you can use it with more peace of mind now
+
+**Checklist result:**
+
+| # | Check | Rating | Reason |
+|---|-------|--------|--------|
+| 1 | First Line | WARN | "is amazing" is low-density; the real hook (source code leak → bugs fixed in 2 days) is buried in the middle |
+| 2 | Semantic Precision | WARN | "burning tokens" and "several versions" are vague — which versions? what cost reduction? |
+| 4 | External Links | PASS | No external links |
+| 5 | Thread Structure | PASS | Single post, content density matches format |
+
+**Suggested rewrite:**
+> Claude Code's source code leaked, and within two days compact, resume, and other token-burning bugs that sat in GitHub Issues for multiple versions all got fixed. Coincidence? I don't know, but the result is good — it genuinely feels safer to use now.
+
+The optimizer moved the core hook (source code leak → 2-day fix) to the first line, replaced vague terms with specifics, and kept the conversational tone.
+
+---
+
 ### darkseoking-post-predictor
 
 **Triggers:** Predicting post performance, analyzing history, estimating engagement ceiling
@@ -59,7 +80,11 @@ The prediction layer. Estimates engagement ceiling for a draft, with or without 
 
 ## Setup
 
-Copy the skill directories into your Claude Code project's `.claude/skills/` and place the CSV where skills can reference it.
+> New to Claude Code skills? See the [ai-toolkit main README](../../README.md) for general setup instructions.
+
+1. Copy the three skill directories (`darkseoking-mindset/`, `darkseoking-post-optimizer/`, `darkseoking-post-predictor/`) into your project's `.claude/skills/`
+2. Place `darkseoking-all-posts.csv` where the skills can reference it (e.g., alongside the skill directories, then adjust paths in SKILL.md)
+3. Claude Code will auto-detect the skills based on their `description` triggers — no manual activation needed
 
 Each skill works independently but they complement each other:
 
