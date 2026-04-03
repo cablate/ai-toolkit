@@ -9,6 +9,7 @@ Each subdirectory is a self-contained skill set with its own README, shared data
 | Directory | Topic | Skills |
 |-----------|-------|--------|
 | [darkseoking](darkseoking/) | SEO & Threads Algorithm | 3 skills (mindset, post-optimizer, post-predictor) |
+| [claude-code](claude-code/) | Claude Code Reverse Engineering | 6 skills (prompt-craft, cost-engineering, harness-patterns, security-patterns, agent-design, agent-audit) |
 
 ## Structure
 

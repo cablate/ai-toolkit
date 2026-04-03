@@ -14,6 +14,10 @@ desktop.ini
 node_modules/
 mcp-servers.json
 
+# Local-only skills (working copies; published versions live in domain-skills/)
+skills/cc-*/
+skills/pptx-style-*/
+
 # Serena
 .serena/
 __pycache__/
