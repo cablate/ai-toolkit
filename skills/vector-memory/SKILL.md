@@ -1,6 +1,6 @@
 ---
 name: vector-memory
-description: "Persistent vector memory for Claude Code via LanceDB. Use when: you need to remember information across sessions, store lessons learned, recall past decisions, or maintain context continuity. Provides memory_store, memory_recall, memory_update, memory_forget, memory_merge, and memory_history tools."
+description: "Persistent vector memory for Claude Code via LanceDB. Use when: remembering across sessions, storing lessons, recalling past decisions, maintaining context continuity. Tools: memory_store, memory_recall, memory_update, memory_forget, memory_merge."
 ---
 
 # Vector Memory

@@ -73,6 +73,16 @@ Define what efficiency means for this user.
 >
 > Anti-patterns: over-exploration, "let me first analyze...", more preparation than execution.
 
+#### 1.5. Subagent dispatch — no redundant work
+
+When dispatching subagents (builder, investigator, etc.), prior investigation results must be converted into precise instructions before dispatch. If you already know the file path, the grep pattern, the exact string to find/replace — give it directly. Do not let a subagent re-search for something you already found.
+
+- Investigation produced specific locations → dispatch with exact `file X, find Y, replace Z`
+- Investigation conclusion not precise enough for find/replace → investigation is incomplete, finish it before dispatching
+- Applies to all subagent types: known information is never re-searched, established conclusions are never re-derived
+
+Anti-patterns: giving builders vague directions like "search cli.js for the compaction call" when you already have the offset; dispatching investigators to re-verify findings you confirmed 5 minutes ago.
+
 #### 2. Precision
 
 Define the expected level of accuracy and scope discipline.

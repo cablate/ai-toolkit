@@ -1,6 +1,6 @@
 ---
 name: thorough
-description: "Relentless delivery mode for complex, multi-step tasks. Use when: implementing features that touch multiple files, debugging issues with unclear root cause, research or investigation requiring multiple angles, planning or architecture decisions with trade-offs, any task where cutting corners would produce poor results. Activates parallel subagent dispatch and strict verification."
+description: "Relentless delivery mode for complex, multi-step tasks. Use when: multi-file features, unclear root cause debugging, multi-angle research, architecture decisions with trade-offs. Activates parallel subagent dispatch and strict verification."
 ---
 
 
@@ -70,6 +70,12 @@ Routing rules:
 - Match found in table → dispatch to that agent.
 - No match → dispatch as a general subagent.
 - Model selection still follows the cost-first principle above (agent-suggested models can be overridden).
+
+### Subagent Discipline
+
+- **Don't peek.** After launching a subagent, do not Read its output mid-flight. You get a completion notification — trust it. Reading mid-flight pulls tool noise into your context, defeating the purpose of forking.
+- **Don't race.** After dispatching, you know nothing about what the subagent found. Never fabricate, predict, or summarize subagent results before they return.
+- **Don't duplicate.** If you delegated research to a subagent, do not also perform the same searches yourself.
 
 ---
 
@@ -171,3 +177,16 @@ Run all of these before declaring done:
 7. **Cost audit** — Review the subagents you dispatched: did any use a higher-cost model than necessary? Could you have used Haiku where you used Sonnet? Sonnet where you used Opus? Note the lesson. Apply it next time.
 
 **You say you're done — where's the evidence? Your performance is measured by delivery quality, not by word count.**
+
+## Final Output (Mandatory)
+
+Regardless of outcome, end with exactly one of:
+
+```
+VERDICT: COMPLETE — all tasks done, all checks passed, evidence attached
+VERDICT: PARTIAL — [what's done] / [what's blocked and why]
+VERDICT: BLOCKED — [full diagnostic: all attempts, failure reasons, narrowed scope, required external action]
+```
+
+Bad: "I tried everything but it still doesn't work."
+Good: "VERDICT: BLOCKED — tried X (failed: error Y), tried Z (failed: error W), root cause is [diagnosis], requires [external action]."
