@@ -27,6 +27,9 @@ ai-toolkit/
 │   ├── agentskill-expertise/ # Skill 設計知識庫
 │   ├── collaboration-style/ # AI-人類協作框架
 │   └── self-growth/         # 持續學習框架
+├── domain-skills/           # 領域專用 skill 套組
+│   ├── darkseoking/         # SEO & Threads 演算法（3 skills）
+│   └── claude-code/         # Claude Code 逆向工程（6 skills）
 ├── mcp.example.json         # MCP server 設定範本
 └── statusline/              # 成本與 context 監控
 ```
@@ -37,11 +40,11 @@ Claude Code Agent tool 的 SOP 式 prompt。當 `/thorough` 分派平行 subagen
 
 | Agent | 模型 | 使用時機 |
 |-------|------|---------|
-| [`analyst`](agents/analyst.md) | opus | 「設計這個」「規劃實作」「稽核 codebase」 |
-| [`investigator`](agents/investigator.md) | sonnet | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
+| [`analyst`](agents/analyst.md) | sonnet | 「設計這個」「規劃實作」「稽核 codebase」 |
+| [`investigator`](agents/investigator.md) | haiku | 「找 X 的所有用法」「這怎麼運作」「為什麼 fail」 |
 | [`builder`](agents/builder.md) | sonnet | 「實作這個」「改 handler」「幫 X 寫測試」 |
 | [`reviewer`](agents/reviewer.md) | sonnet | 「review 這段 code」「找死碼」「清理 unused exports」 |
-| [`doc-sync`](agents/doc-sync.md) | sonnet | 「建立專案文件」「code 改了同步文件」 |
+| [`doc-sync`](agents/doc-sync.md) | haiku | 「建立專案文件」「code 改了同步文件」 |
 | [`agent-factory`](agents/agent-factory.md) | opus | 「建新 agent」「改善這個 agent 的 prompt」 |
 
 每個 agent 根據分派 context 自動判斷模式。一個 agent，多個工作流程。
@@ -65,6 +68,17 @@ Claude Code Agent tool 的 SOP 式 prompt。當 `/thorough` 分派平行 subagen
 | [`/agentskill-expertise`](skills/agentskill-expertise/SKILL.md) | Agent Skill 設計知識庫——底層機制、設計哲學、架構模式、常見誤區 |
 | [`/collaboration-style`](skills/collaboration-style/skill.md) | AI-人類協作規範——摩擦案例、程式風格偏好、行為準則 |
 | [`/self-growth`](skills/self-growth/SKILL.md) | 持續學習框架——從工作中學習、組織知識、建立回饋迴路 |
+
+## Domain Skills
+
+圍繞特定主題或實踐者方法論打造的深度 skill 套組。與通用 skill 不同，這些套組編碼了領域專業知識，採分層架構（知識 → 操作 → 預測）。
+
+| 領域 | Skills | 說明 |
+|------|--------|------|
+| [darkseoking](domain-skills/darkseoking/) | 3 | SEO & Threads 演算法——心智模型（8 大原則）、發文優化器（發布前檢查清單）、表現預測器（V2 雙階段 Views×ER）|
+| [claude-code](domain-skills/claude-code/) | 6 | Claude Code 逆向工程——prompt 技巧、成本工程、harness 模式、安全模式、agent 設計、agent 稽核 |
+
+> 每個領域都有獨立的 README，包含設定指引和架構概覽。
 
 ## MCP Servers
 

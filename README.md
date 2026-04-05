@@ -27,6 +27,9 @@ ai-toolkit/
 │   ├── agentskill-expertise/ # Skill design knowledge base
 │   ├── collaboration-style/ # AI-human collaboration framework
 │   └── self-growth/         # Continuous learning framework
+├── domain-skills/           # Domain-specific skill sets
+│   ├── darkseoking/         # SEO & Threads algorithm (3 skills)
+│   └── claude-code/         # Claude Code reverse engineering (6 skills)
 ├── mcp.example.json         # MCP server config template
 └── statusline/              # Cost & context monitoring
 ```
@@ -37,11 +40,11 @@ SOP-style prompts for Claude Code's Agent tool. When `/thorough` dispatches para
 
 | Agent | Model | When to use |
 |-------|-------|-------------|
-| [`analyst`](agents/analyst.md) | opus | "design this", "plan the implementation", "audit codebase health" |
-| [`investigator`](agents/investigator.md) | sonnet | "find all usages of X", "how does this work", "why does this fail" |
+| [`analyst`](agents/analyst.md) | sonnet | "design this", "plan the implementation", "audit codebase health" |
+| [`investigator`](agents/investigator.md) | haiku | "find all usages of X", "how does this work", "why does this fail" |
 | [`builder`](agents/builder.md) | sonnet | "implement this", "modify the handler", "write tests for X" |
 | [`reviewer`](agents/reviewer.md) | sonnet | "review this code", "find dead code", "clean up unused exports" |
-| [`doc-sync`](agents/doc-sync.md) | sonnet | "set up project docs", "sync docs after changes" |
+| [`doc-sync`](agents/doc-sync.md) | haiku | "set up project docs", "sync docs after changes" |
 | [`agent-factory`](agents/agent-factory.md) | opus | "create a new agent", "improve this agent's prompt" |
 
 Each agent auto-detects its mode from dispatch context. One agent, multiple workflows.
@@ -65,6 +68,17 @@ Each agent auto-detects its mode from dispatch context. One agent, multiple work
 | [`/agentskill-expertise`](skills/agentskill-expertise/SKILL.md) | Agent Skill design knowledge base — mechanisms, philosophy, patterns, pitfalls |
 | [`/collaboration-style`](skills/collaboration-style/skill.md) | AI-human collaboration norms — friction cases, coding style, behavioral guidelines |
 | [`/self-growth`](skills/self-growth/SKILL.md) | Continuous learning framework — learn from work, organize knowledge, build feedback loops |
+
+## Domain Skills
+
+Deep skill sets built around specific topics or practitioners' methodologies. Unlike generic skills, these encode domain expertise with layered architecture (knowledge → operations → prediction).
+
+| Domain | Skills | Description |
+|--------|--------|-------------|
+| [darkseoking](domain-skills/darkseoking/) | 3 | SEO & Threads algorithm — mindset (8 mental models), post optimizer (pre-publish checklist), post predictor (V2 dual-stage Views×ER) |
+| [claude-code](domain-skills/claude-code/) | 6 | Claude Code reverse engineering — prompt craft, cost engineering, harness patterns, security, agent design, agent audit |
+
+> Each domain has its own README with setup instructions and architecture overview.
 
 ## MCP Servers
 
