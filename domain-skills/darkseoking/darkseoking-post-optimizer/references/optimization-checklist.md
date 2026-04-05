@@ -91,7 +91,25 @@ Rapid consecutive posting = diversity penalty + competing with yourself (US84020
 
 ---
 
-## 8. Topic Suggestion
+## 8. Content Portfolio Check
+
+**Not every post needs to score PASS on all items above.** Accounts need a mix of high-intensity and light content for long-term health. A post that "fails" semantic precision or thread structure checks may be exactly what the account needs right now.
+
+**Before rating:** Determine the post's role in the content portfolio:
+
+| Post Role | Checklist Behavior |
+|-----------|-------------------|
+| **Core content** (research, framework, showcase) | Apply all checks strictly — this post is ceiling-chasing |
+| **Maintenance post** (life/casual, quick reaction, light take) | Relax checks 1-5. Key checks: Topic Distance (3) and Timing (6) still apply. Semantic precision, thread structure, first-line optimization are less relevant — the post's job is rhythm and personality, not virality |
+| **Experiment** (new topic, new format) | Relax all checks except Topic Distance. The goal is testing, not optimizing |
+
+**Why:** An account posting only optimized core content looks like a content machine. The algorithm rewards authenticity and diversity (US9336553B2). Light posts serve as personality signals, audience breathing room, and contrast foundation for future high-impact posts.
+
+**Red flag:** If the user hasn't posted any light/maintenance content in their last 5+ posts, WARN that the account may benefit from a lighter post before the next core piece.
+
+---
+
+## 9. Topic Suggestion
 
 **Only triggered when user asks "what should I write?"**
 

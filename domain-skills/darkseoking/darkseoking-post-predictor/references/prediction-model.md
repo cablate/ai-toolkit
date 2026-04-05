@@ -1,10 +1,16 @@
 # Prediction Model
 
-How to predict a post's performance ceiling and recommend optimal content strategy — derived from darkseoking's 80-post dataset cross-referenced with Meta algorithm patent knowledge.
+How to predict a post's performance ceiling and recommend optimal content strategy.
+
+Two data sources:
+- **darkseoking benchmark** (80 posts) — distribution-driven account, useful for content type hierarchy and algorithm rules
+- **Personal data** (if available via historical-analysis.md) — account-specific baselines, quadrant profile, persona tags
 
 ## Prerequisites
 
-Run historical-analysis.md first if the user has their own data. If no personal data, use the patterns below as benchmark.
+Run historical-analysis.md first if the user has their own data. If no personal data, use darkseoking benchmark patterns below.
+
+**If user has a personal profile** (`personal-profile.md`), load it — it contains account-specific baselines and overrides that take priority over darkseoking benchmark.
 
 ---
 
@@ -91,39 +97,135 @@ Posts with first-hand data/experience consistently outperform:
 
 ---
 
-## Ceiling Prediction Method
+## Pattern 6: Persona Contrast Effect
 
-### Step 1: Identify content type from hierarchy (Pattern 1)
-→ Gives base multiplier range
+A post's value can come from WHO says it in WHAT context, not just the content itself.
 
-### Step 2: Check thread structure (Pattern 2)
-→ Multi-thread deep content raises ceiling; shallow single posts cap it
+**Case study (cab_late, 2026-04-05):**
+- Post: "連假看著群組...感到疲憊...決定放下 AI 去吃蝦喝啤酒"
+- Predicted as Life/Casual → 0.4x baseline (15-40 likes)
+- Actual: 122 likes = 1.8x baseline (6hr mark, still climbing)
 
-### Step 3: Check diversity distance from recent posts (Pattern 4)
-→ Same angle = severe penalty; different angle within niche = neutral/bonus
+**Why it worked:**
+- cab_late is positioned as "the hardest-working AI guy" → him saying "I'm tired" = shock value
+- Holiday timing: everyone was watching others hustle, collective exhaustion resonated
+- Low-friction engagement: no thinking required to like, just emotional agreement
 
-### Step 4: Check series position if applicable (Pattern 3)
-→ Later installments expect 25-50% of first installment unless angle shifts
+**Classification rule:** Before categorizing a post as Life/Casual, check: does the value come from the content, or from "who said this + when"? If the latter, apply Persona Contrast multiplier instead of Life/Casual multiplier.
 
-### Step 5: Check first-hand vs second-hand (Pattern 5)
-→ First-hand raises ceiling; pure commentary caps it
+**Persona Contrast conditions:**
+- Creator has a strong, consistent positioning (e.g. "always working", "hardcore technical")
+- Post breaks that positioning in a relatable way
+- Audience can project themselves onto the moment
+- When all three → expect 1.5x-3x baseline, NOT 0.4x
 
-### Step 6: Apply timing (from darkseoking-mindset)
-→ <24h after viral = competing with own diffusion; 24-48h+ gap = neutral/bonus
+**Patent basis:** Authenticity signals (US10579688B2) — posts that break pattern generate higher dwell time and deeper emotional engagement, which the algorithm reads as quality signals.
 
-### Combine:
+---
+
+## Ceiling Prediction Method (V2: Dual-Stage)
+
+Posts succeed through two independent mechanisms:
+- **Distribution** (Views): how many people the algorithm shows this to
+- **Conversion** (ER): what percentage of viewers engage
+
+V1 only predicted likes directly, which conflates the two. V2 predicts each stage separately, then combines.
+
+### Stage 1: Predict Views Range
+
+Evaluate these factors to estimate how far the algorithm will push the post:
+
+**1a. Content type distribution potential (Pattern 1)**
+→ Original research / actionable frameworks get widest distribution. Series logs / life posts get minimal push.
+
+**1b. Share potential**
+→ Will people share/repost this? Actionable content and tool showcases drive shares → shares trigger secondary distribution. Check share/view ratio benchmarks from personal profile if available.
+
+**1c. Creator Embedding match**
+→ Is this post in the creator's established niche? On-niche = algorithm has a ready audience to distribute to. Off-niche = algorithm doesn't know who to show it to.
+
+**1d. Diversity distance from recent posts (Pattern 4)**
+→ Same angle as recent post = distribution suppressed. Different angle within niche = neutral/bonus.
+
+**1e. Timing factors**
+→ Day of week: check personal profile for high/low days.
+→ Post gap: check personal profile for optimal interval.
+→ Post-viral: <24h after viral = competing with own diffusion.
+
+**1f. Is quote post?**
+→ Quote posts get systematically lower distribution. If personal data shows quote penalty, apply it.
+
+**Views estimate**: Combine factors → Low / Baseline / High / Very High distribution range, mapped to actual views numbers from personal profile.
+
+### Stage 2: Predict ER Range
+
+Evaluate these factors to estimate what percentage of viewers will engage:
+
+**2a. Persona Contrast check (Pattern 6) — FIRST**
+→ Does value come from "who said this + when" rather than content itself? If yes → high ER expected (1.5-2x normal ER). This overrides content-type ER expectations.
+
+**2b. Content depth / friction**
+→ Account-specific: some accounts reward depth (long text = quality signal → higher ER), others penalize it (long text = friction → lower ER). Check personal profile.
+
+**2c. Emotional intensity**
+→ Posts with strong emotional markers (vulnerability, anger, excitement) → higher dwell time → higher ER. Especially potent when combined with persona contrast.
+
+**2d. First-hand vs second-hand (Pattern 5)**
+→ First-hand content generates deeper engagement (follow-up questions, personal responses) → higher ER.
+
+**2e. Engagement friction**
+→ How much effort to engage? One-liner emotional agreement = zero friction = high ER. Technical deep-dive requiring full read = high friction = ER depends on content quality.
+
+**ER estimate**: Combine factors → Below-normal / Normal / Above-normal / High ER range, mapped to actual ER numbers from personal profile.
+
+### Stage 3: Combine + Quadrant Diagnosis
+
 ```
-Predicted Range = Account Baseline × Content Type Range × Adjustments
+Predicted Likes Range = Views Range × ER Range
 
-Where:
-- Account Baseline = user's median engagement (or darkseoking's ~77 likes as benchmark)
-- Content Type Range = from Pattern 1 hierarchy
-- Adjustments = narrowed by Patterns 2-5
+Then classify into quadrant:
 
-Output as RANGE with reasoning, never a single number.
+| Quadrant | Views | ER | Meaning | Typical Ceiling |
+|----------|-------|----|---------|-----------------|
+| HV+HE (Jackpot) | High | High | Algorithm pushes + audience loves it | Highest (use personal profile data) |
+| HV+LE (Distribution-driven) | High | Normal/Low | Algorithm pushes hard, moderate conversion | High likes via volume |
+| LV+HE (Conversion-driven) | Normal/Low | High | Small audience but very engaged | Ceiling capped by distribution |
+| LV+LE (Underperform) | Low | Low | Neither mechanism fires | Below baseline |
 ```
 
-**Without user's historical data:** Use darkseoking's patterns as directional benchmark. Scale by estimated account size ratio (follower count as rough proxy). Emphasize that ceiling prediction is less precise without personal data, but content type hierarchy and diversity rules still apply universally.
+**Key insight**: LV+HE posts have a hard ceiling determined by how many people see them. The optimization path is different:
+- HV+LE → improve content resonance / emotional hook
+- LV+HE → increase shareability / distribution triggers to break out of low-views trap
+
+### Fallback (no personal data)
+
+Without views/ER data, fall back to V1 logic: use darkseoking content type hierarchy as directional benchmark. Note that predictions will be less precise and cannot distinguish distribution-driven vs conversion-driven success.
+
+---
+
+## Pattern 7: Content Portfolio Balance
+
+Not every post should target HV+HE. Accounts need a mix of content intensities for long-term health.
+
+**Why low-traffic posts are necessary:**
+- **Posting rhythm**: sustains frequency without exhausting high-value material
+- **Authenticity signal**: Creator Embedding needs to see a "real person," not a "content machine" — pure optimization looks artificial
+- **Diversity reward**: US9336553B2 rewards content variety; all-banger feeds risk same-source density penalties
+- **Contrast foundation**: Persona Contrast (Pattern 6) only works when there's a "normal" baseline to break from — if every post is intense, nothing feels different
+- **Audience breathing room**: consecutive high-density content causes follower fatigue, depressing ER over time
+
+**Recommended content mix (directional, not rigid):**
+
+| Category | Share | Examples | Purpose |
+|----------|-------|---------|---------|
+| Core content | 60-70% | Original research, frameworks, tool showcase, personal journey with data | Ceiling-chasing, audience growth |
+| Light content | 20-30% | Life/casual, commentary, quick takes, reactions | Rhythm, personality, diversity signal |
+| Experimental | ~10% | New topics, new formats, boundary-testing | Creator Embedding expansion, surprise factor |
+
+**How this affects prediction:**
+- A Life/Casual post predicted at LV+LE is not a "bad post" if the account's recent 5 posts were all core content — it's a portfolio-balancing move
+- Recommendation should consider recent content mix, not just maximize the next post's ceiling
+- If a user asks "what should I post next?" and their last 3+ posts were all high-intensity, recommend a lighter post even though its predicted ceiling is lower
 
 ---
 
@@ -131,17 +233,28 @@ Output as RANGE with reasoning, never a single number.
 
 ```
 PREDICTION
-- Ceiling range: [X]-[Y] likes
-- Based on: [content type] + [thread structure] + [diversity distance] + [timing]
-- Confidence: High (has personal data + clear pattern match) / Medium (benchmark only or mixed signals) / Low (insufficient data or unusual content)
+- Quadrant: [HV+HE / HV+LE / LV+HE / LV+LE] — [one-line meaning]
+- Views range: [X]-[Y] (based on: [key distribution factors])
+- ER range: [X%]-[Y%] (based on: [key conversion factors])
+- Likes range: [X]-[Y]
+- Confidence: High / Medium / Low
 - Key risk: [biggest factor that could pull performance down]
 - Key upside: [factor that could push it higher]
 
-OPTIMIZATION
-- [Specific, actionable suggestion to raise ceiling based on patterns]
+OPTIMIZATION (tailored to predicted quadrant)
+- If HV+LE: [how to increase ER — emotional hook, persona contrast, reduce friction]
+- If LV+HE: [how to increase views — shareability, thread structure, timing]
+- If LV+LE: [fundamental content/angle change needed]
+- If HV+HE: [maintain — what's working and don't change]
+
+PORTFOLIO CONTEXT (Pattern 7)
+- Recent content mix: [last 5 posts: X core / Y light / Z experimental]
+- Portfolio balance: [healthy / skewed toward core / skewed toward light]
+- This post's role: [ceiling-chasing / rhythm maintenance / experiment]
 
 NEXT POST RECOMMENDATION (if asked)
-- Content type: [from hierarchy] × [thread structure] × [angle]
-- Why: [which pattern supports this]
-- Avoid: [what pattern says NOT to do]
+- Target quadrant: [which quadrant to aim for]
+- Content type: [from hierarchy] × [angle] × [timing]
+- Portfolio rationale: [why this type now — ceiling opportunity / diversity needed / contrast setup]
+- Avoid: [what would pull it to a worse quadrant]
 ```

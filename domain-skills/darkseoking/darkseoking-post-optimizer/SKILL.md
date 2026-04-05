@@ -26,5 +26,5 @@ Systematic pre-publish checks for Threads posts, based on algorithm patent knowl
 ## References
 
 - [optimization-checklist.md](references/optimization-checklist.md) — 8 checks, each backed by patents
-- Viral post examples → `../darkseoking-all-posts.csv`
+- Viral post examples → `darkseoking-mindset/references/darkseoking-all-posts.csv`
 - Deep algorithm knowledge → `darkseoking-mindset` skill
